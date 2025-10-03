@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aron Lukacs - Sales & Marketing Specialist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #FAFAFA;
+            --color-card: #FFFFFF;
+            --color-text: #1A1A1A;
+            --color-text-secondary: #666666;
+            --color-border: rgba(0, 0, 0, 0.06);
+            --color-accent: #768CFF;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 60px;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        /* Left Profile Section */
+        .profile-section {
+            position: sticky;
+            top: 80px;
+            padding-right: 40px;
+        }
+
+        .avatar {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            margin-bottom: 32px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .avatar::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 12px;
+        }
+
+        .tagline {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--color-accent);
+            margin-bottom: 24px;
+        }
+
+        .bio {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--color-text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .chip {
+            padding: 6px 12px;
+            background: rgba(118, 140, 255, 0.1);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--color-accent);
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--color-accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5a6fd9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--color-card);
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--color-accent);
+        }
+
+        .social-proof {
+            padding-top: 24px;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .social-proof-title {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .social-proof-text {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Right Bento Grid Section */
+        .bento-section {
+            min-height: 100vh;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            width: 100%;
+        }
+
+        .bento-item {
+            background: var(--color-card);
+            border-radius: 28px;
+            border: 1px solid var(--color-border);
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .bento-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 28px;
+            padding: 1px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .bento-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .bento-item:hover::before {
+            opacity: 1;
+        }
+
+        /* Grid sizes */
+        .span-2 {
+            grid-column: span 2;
+        }
+
+        .row-span-2 {
+            grid-row: span 2;
+        }
+
+        .item-content {
+            padding: 28px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 140px;
+        }
+
+        .item-title {
+            font-size: 19px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .item-subtitle {
+            font-size: 9px;
+            font-weight: 500;
+            color: var(--color-accent);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .item-description {
+            font-size: 15px;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        .item-list {
+            list-style: none;
+            margin: 8px 0 0 0;
+        }
+
+        .item-list li {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            padding-left: 18px;
+            position: relative;
+            margin-bottom: 6px;
+        }
+
+        .item-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+        }
+
+        /* Link Items */
+        .link-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 24px;
+            text-decoration: none;
+            color: inherit;
+            min-height: 120px;
+        }
+
+        .link-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .link-info h3 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .link-info p {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+        }
+
+        /* Section Headers */
+        .section-header {
+            padding: 16px 0;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--color-text-secondary);
+            grid-column: 1 / -1;
+            margin-top: 20px;
+        }
+
+        /* Image Cards */
+        .image-card {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .bento-item:hover .image-card img {
+            transform: scale(1.08);
+        }
+
+        .caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Video Card */
+        .video-card {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            overflow: hidden;
+            border-radius: 28px 28px 0 0;
+        }
+
+        .video-card iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 28px 28px 0 0;
+        }
+
+        /* Map Widget */
+        .map-widget {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            cursor: default;
+            display: block;
+        }
+
+        .map-widget iframe {
+            position: absolute;
+            top: -25%;
+            left: -25%;
+            width: 150%;
+            height: 150%;
+            border: none;
+            opacity: 0.95;
+            pointer-events: none;
+            cursor: default;
+        }
+
+        .map-marker {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            width: 28px;
+            height: 28px;
+            z-index: 10;
+        }
+
+        .marker-pulse {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 48px;
+            height: 48px;
+            transform: translate(-50%, -50%);
+            background: #EA4335;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.2;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .marker-dot {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .marker-dot::before {
+            content: '';
+            position: absolute;
+            inset: 3px;
+            background: #EA4335;
+            border-radius: 50%;
+        }
+
+        .marker-dot::after {
+            content: '';
+            position: absolute;
+            inset: 5px;
+            background: #EA4335;
+            border-radius: 50%;
+        }
+
+        .cloud {
+            position: absolute;
+            width: 500px;
+            height: 200px;
+            opacity: 0.4;
+            filter: blur(3px);
+            animation: float 35s infinite linear;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .cloud:nth-child(2) {
+            animation-delay: -15s;
+            top: 30%;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(calc(100% + 500px));
+            }
+        }
+
+        .plane {
+            position: absolute;
+            width: 24px;
+            animation: fly 45s infinite linear;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+        }
+
+        @keyframes fly {
+            0% {
+                left: -5%;
+                top: 20%;
+            }
+            50% {
+                left: 105%;
+                top: 70%;
+            }
+            100% {
+                left: -5%;
+                top: 20%;
+            }
+        }
+
+        .map-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
+            z-index: 10;
+        }
+
+        /* Logo Wall - Floating */
+        .logo-section {
+            grid-column: 1 / -1;
+            margin: 40px 0;
+            padding: 40px 0;
+        }
+
+        .logo-section-title {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text-secondary);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .logo-wall {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px 48px;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.6;
+        }
+
+        .logo-item {
+            height: 32px;
+            filter: grayscale(100%);
+            transition: all 0.3s;
+        }
+
+        .logo-item:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        /* Timeline */
+        .timeline {
+            padding: 32px 28px;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 24px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-year {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-accent);
+        }
+
+        .timeline-content h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .timeline-content p {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .layout {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .profile-section {
+                position: relative;
+                top: 0;
+                padding-right: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 24px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            .bio {
+                font-size: 14px;
+            }
+
+            .bento-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .span-2 {
+                grid-column: span 1;
+            }
+
+            .avatar {
+                width: 120px;
+                height: 120px;
+            }
+
+            .image-card {
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="layout">
+            <!-- Left Profile Section (1/3) -->
+            <div class="profile-section">
+                <div class="avatar">
+                    <img src="aron.jpg" alt="Aron Lukacs" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <h1>Aron Lukacs</h1>
+                <p class="tagline">Sales & Marketing Specialist</p>
+                <p class="bio">Helping B2B teams turn complex offers into clear value. Currently working across LogiNet International and 22.design.</p>
+
+                <div class="chips">
+                    <span class="chip">Budapest</span>
+                    <span class="chip">B2B</span>
+                    <span class="chip">Enterprise</span>
+                    <span class="chip">GTM Strategy</span>
+                </div>
+
+                <p class="bio">From frontend development to go-to-market strategy. I bridge technical thinking with sales & marketing execution.</p>
+
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary">Book a call</a>
+                    <a href="mailto:contact@example.com" class="btn btn-secondary">Email me</a>
+                </div>
+
+                <div class="social-proof">
+                    <p class="social-proof-title">Worked with</p>
+                    <p class="social-proof-text">Auchan · Vodafone · ELTE · NYT · Vice · Al Jazeera</p>
+                </div>
+            </div>
+
+            <!-- Right Bento Grid Section (2/3) -->
+            <div class="bento-section">
+                <div class="bento-grid">
+
+                    <!-- Location Map Widget -->
+                    <div class="bento-item">
+                        <div class="map-widget">
+                            <!-- Google Maps iframe centered on Budapest -->
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d9000000!2d19.0402!3d47.4979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1234567890!5m2!1sen!2s" style="filter: saturate(0.85) brightness(1.05);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+                            <!-- Budapest marker -->
+                            <div class="map-marker" style="left: 53%; top: 54%;">
+                                <div class="marker-pulse"></div>
+                                <div class="marker-dot"></div>
+                            </div>
+
+                            <!-- Realistic animated clouds -->
+                            <svg class="cloud" viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="cloudGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#fff;stop-opacity:0.95" />
+                                        <stop offset="100%" style="stop-color:#f0f0f0;stop-opacity:0.85" />
+                                    </linearGradient>
+                                </defs>
+                                <ellipse cx="60" cy="70" rx="45" ry="30" fill="url(#cloudGrad1)"/>
+                                <ellipse cx="100" cy="60" rx="55" ry="38" fill="url(#cloudGrad1)"/>
+                                <ellipse cx="150" cy="65" rx="50" ry="35" fill="url(#cloudGrad1)"/>
+                                <ellipse cx="190" cy="75" rx="40" ry="28" fill="url(#cloudGrad1)"/>
+                                <ellipse cx="125" cy="80" rx="70" ry="25" fill="url(#cloudGrad1)"/>
+                            </svg>
+                            <svg class="cloud" viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="cloudGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#fff;stop-opacity:0.9" />
+                                        <stop offset="100%" style="stop-color:#f5f5f5;stop-opacity:0.8" />
+                                    </linearGradient>
+                                </defs>
+                                <ellipse cx="70" cy="65" rx="50" ry="32" fill="url(#cloudGrad2)"/>
+                                <ellipse cx="120" cy="55" rx="60" ry="40" fill="url(#cloudGrad2)"/>
+                                <ellipse cx="180" cy="70" rx="48" ry="30" fill="url(#cloudGrad2)"/>
+                                <ellipse cx="140" cy="78" rx="65" ry="22" fill="url(#cloudGrad2)"/>
+                            </svg>
+
+                            <!-- Location caption -->
+                            <div class="map-caption">Budapest, Hungary</div>
+                        </div>
+                    </div>
+
+                    <!-- Section Header -->
+                    <!-- LogiNet & 22 Portrait Photo -->
+                    <div class="bento-item row-span-2">
+                        <div class="image-card" style="height: 100%;">
+                            <img src="photos/loginet-22.jpg" alt="LogiNet & 22 Design">
+                        </div>
+                    </div>
+
+                    <!-- LogiNet International -->
+                    <div class="bento-item">
+                        <div class="item-content">
+                            <h2 class="item-title">LogiNet International</h2>
+                            <div class="item-subtitle">Marketing & Business Development</div>
+                            <p class="item-description">AI-enabled transformation partner delivering end-to-end software development since 2008. Custom AI solutions, web and mobile development for Vodafone, Auchan, Garmin.</p>
+                            <a href="https://loginet.com/" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 8px 16px; background: rgba(118, 140, 255, 0.1); border-radius: 8px; font-size: 13px; color: var(--color-accent); text-decoration: none; font-weight: 600; transition: all 0.2s;">
+                                <span>Explore LogiNet</span>
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                    <path d="M7 17L17 7M7 7h10v10"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 22 Design Studio -->
+                    <div class="bento-item span-2">
+                        <div class="item-content">
+                            <h2 class="item-title">22.design</h2>
+                            <div class="item-subtitle">Marketing & Business Development</div>
+                            <p class="item-description">Conversion architects from Budapest. UX/UI design, no-code development, and research-driven strategy that actually moves metrics. 200+ digital products optimized, 22% average conversion rate increase. Senior-only team building experiences that don't just look good—they sell.</p>
+                            <a href="https://22.design/" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 8px 16px; background: rgba(118, 140, 255, 0.1); border-radius: 8px; font-size: 13px; color: var(--color-accent); text-decoration: none; font-weight: 600; transition: all 0.2s;">
+                                <span>See Our Work</span>
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                    <path d="M7 17L17 7M7 7h10v10"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Section Header -->
+                    <div class="section-header">my professional focus</div>
+
+                    <!-- Strategic Sales & Marketing -->
+                    <div class="bento-item">
+                        <div class="item-content">
+                            <h2 class="item-title">Strategic Sales & Marketing</h2>
+                            <p class="item-description">Turning complex B2B offers into clear value. Building funnels that convert, positioning that sticks, and go-to-market strategies that align teams from day one.</p>
+                        </div>
+                    </div>
+
+                    <!-- In-house AI-enablement -->
+                    <div class="bento-item">
+                        <div class="item-content">
+                            <h2 class="item-title">In-house AI-enablement</h2>
+                            <p class="item-description">Helping teams adopt AI without the hype. Practical implementation, workflow integration, and building internal capabilities that create real competitive advantages.</p>
+                        </div>
+                    </div>
+
+                    <!-- From Idea to Prototype -->
+                    <div class="bento-item">
+                        <div class="item-content">
+                            <h2 class="item-title">From Idea to Prototype</h2>
+                            <p class="item-description">Taking concepts from napkin sketch to working prototype. Rapid validation, lean builds, and strategic iteration that saves time and money.</p>
+                        </div>
+                    </div>
+
+                    <!-- Human Teams -->
+                    <div class="bento-item">
+                        <div class="item-content">
+                            <h2 class="item-title">Human Teams</h2>
+                            <p class="item-description">Building teams that actually work together. Real collaboration over process theater. Creating environments where people thrive, not just survive.</p>
+                        </div>
+                    </div>
+
+                    <!-- Section Header -->
+                    <div class="section-header">Ventures 🚀</div>
+
+                    <!-- Osteroo -->
+                    <div class="bento-item">
+                        <div class="item-content">
+                            <h2 class="item-title">Osteroo</h2>
+                            <p class="item-description">Co-founded an image search engine backed by VC funds. Raised capital, built the product, learned from failure. The best lessons often come from what doesn't work.</p>
+                            <a href="https://www.forbes.hu/uzlet/balogh-petya-tulnyerte-magat-capak-kozott-lukacs-aron-egboltkep/" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 8px 16px; background: rgba(118, 140, 255, 0.1); border-radius: 8px; font-size: 13px; color: var(--color-accent); text-decoration: none; font-weight: 600; transition: all 0.2s;">
+                                <span>Read Forbes Interview</span>
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                    <path d="M7 17L17 7M7 7h10v10"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                                        <!-- Shark Tank -->
+                    <div class="bento-item">
+                        <div class="item-content">
+                            <h2 class="item-title">Hungarian Shark Tank</h2>
+                            <p class="item-description">Pitched Osteroo and secured investment from Peter Balogh, renowned technology angel. The experience of standing in front of investors and defending your vision—invaluable.</p>
+                            <a href="https://rtl.hu/capakkozott/2021/04/09/sikersztori-mi-tortent-az-egboltkeppel-a-befektetes-utan" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 8px 16px; background: rgba(118, 140, 255, 0.1); border-radius: 8px; font-size: 13px; color: var(--color-accent); text-decoration: none; font-weight: 600; transition: all 0.2s;">
+                                <span>Read RTL Story</span>
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                    <path d="M7 17L17 7M7 7h10v10"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Shark Tank Photo -->
+                    <div class="bento-item span-2">
+                        <div class="image-card">
+                            <img src="photos/sharktank.jpg" alt="Hungarian Shark Tank">
+                            <div class="caption">Hungarian Shark Tank</div>
+                        </div>
+                    </div>
+
+
+
+                    <!-- BiTS labo.fr Photo -->
+                    <div class="bento-item">
+                        <div class="image-card">
+                            <img src="photos/bitslabo.jpg" alt="BiTS labo.fr">
+                            <div class="caption">BiTS labo.fr</div>
+                        </div>
+                    </div>
+
+                    <!-- BiTS labo.fr -->
+                    <div class="bento-item">
+                        <div class="item-content">
+                            <h2 class="item-title">BiTS labo.fr</h2>
+                            <p class="item-description">Sales & Marketing Manager for London-based brand. Reseller contracts, fashion shows, BiTS Radio parties, webshop ops.</p>
+                            <a href="https://www.youtube.com/channel/UCDGYSQC_wSISyNdOMvDh9IA" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; font-size: 13px; color: var(--color-accent); text-decoration: none; font-weight: 500;">
+                                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                </svg>
+                                BiTS Radio Channel
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Flashbird Creative -->
+                    <div class="bento-item">
+                        <div class="item-content">
+                            <h2 class="item-title">Flashbird Creative</h2>
+                            <p class="item-description">Post-high school motion picture experiment with friends. Learning how to work. Some of them became cinema professionals—I took a different path.</p>
+                        </div>
+                    </div>
+
+                    <!-- Flashbird Video -->
+                    <div class="bento-item" style="overflow: visible;">
+                        <div class="video-card" style="padding-bottom: 56.25%; margin-bottom: 0;">
+                            <iframe src="https://www.youtube-nocookie.com/embed/u7beg7d1q5Q?si=tGtx6UFUcfxT18Bi&controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                        <div style="padding: 20px;">
+                            <p style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; margin: 0;">As much as it was an early professional friendship project, this video still takes a special place in my heart.</p>
+                        </div>
+                    </div>
+
+                    <!-- Section Header -->
+                    <div class="section-header">Media & Production 🎥</div>
+
+                    <!-- Media Production -->
+                    <div class="bento-item row-span-2">
+                        <div class="image-card" style="height: 100%;">
+                            <img src="photos/fixer.jpg" alt="Media Production">
+                            <div class="caption">Field Production</div>
+                        </div>
+                    </div>
+
+                    <!-- Fixer work -->
+                    <div class="bento-item">
+                        <div class="item-content">
+                            <h2 class="item-title">Producer / Fixer</h2>
+                            <p class="item-description">Since 2015, I am working with NYT, Vice, ZDF, Al Jazeera, NRC and many more on politics, Ukraine coverage, field logistics and editorial stuff.</p>
+                        </div>
+                    </div>
+
+                    <!-- Vice Refugee Crisis Video -->
+                    <div class="bento-item" style="overflow: visible;">
+                        <div class="video-card" style="padding-bottom: 56.25%; margin-bottom: 0;">
+                            <iframe src="https://www.youtube.com/embed/pz2kDlmHbRQ" title="Vice refugee crisis coverage" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+                        </div>
+                        <div style="padding: 20px;">
+                            <p style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; margin: 0;">A Vice piece about the 2015 refugee crisis I worked on as a producer/fixer.</p>
+                        </div>
+                    </div>
+
+
+                    <!-- Sociomapping Description -->
+                    <div class="bento-item span-2">
+                        <div class="item-content">
+                            <h2 class="item-title">Sociomapping – A lecture about geopolitics and Hungary's relative position in the world</h2>
+                            <p class="item-description">Hosted an episodic lecture series exploring geopolitics, economics, and societal trends. Two seasons featuring conversations with leading economists, diplomats, and policy experts.</p>
+                            <a href="https://www.youtube.com/watch?v=qe72GdtJE2Q" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 8px 16px; background: rgba(118, 140, 255, 0.1); border-radius: 8px; font-size: 13px; color: var(--color-accent); text-decoration: none; font-weight: 600; transition: all 0.2s;">
+                                <span>Watch UK episode with economist Zoltan Pogatsa</span>
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                    <path d="M7 17L17 7M7 7h10v10"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Sociomapping Photo -->
+                    <div class="bento-item">
+                        <div class="image-card">
+                            <img src="photos/sociomapping.jpg" alt="Sociomapping">
+                            <div class="caption">Hosting a Youtube series in Adaptér</div>
+                        </div>
+                    </div>
+
+                    <div class="bento-item" style="overflow: visible;">
+                        <div class="video-card" style="padding-bottom: 56.25%; margin-bottom: 0;">
+                            <iframe src="https://www.youtube.com/embed/qe72GdtJE2Q" title=""Orbán Viktor pártja... Magyar Péter pártja..." – Ez elképzelhetetlen Angliában | Pogátsa Zoltán
+" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+                        </div>
+                        <div style="padding: 20px;">
+                            <p style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; margin: 0;">A Vice piece about the 2015 refugee crisis I worked on as a producer/fixer.</p>
+                        </div>
+                    </div>
+
+                    
+
+                    <!-- Section Header -->
+                    <div class="section-header">Cultural Work 🎭</div>
+
+                    <!-- Cultural Work Description -->
+                    <div class="bento-item span-2">
+                        <div class="item-content">
+                            <h2 class="item-title">Building Communities</h2>
+                            <p class="item-description">Led communications for Hungary's independent festival and cultural center. Shaped narratives, built audiences, created lasting impact.</p>
+                        </div>
+                    </div>
+
+                    <!-- Bánkitó Festival -->
+                    <div class="bento-item">
+                        <div class="image-card">
+                            <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600&h=600&fit=crop&q=80" alt="Bánkitó Festival">
+                            <div class="caption">Bánkitó Festival</div>
+                        </div>
+                    </div>
+
+                    <!-- Auróra -->
+                    <div class="bento-item">
+                        <div class="image-card">
+                            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&h=600&fit=crop&q=80" alt="Auróra">
+                            <div class="caption">Auróra</div>
+                        </div>
+                    </div>
+
+                    <!-- Budapest Showcase Hub -->
+                    <div class="bento-item">
+                        <div class="item-content">
+                            <h2 class="item-title">Budapest Showcase Hub</h2>
+                            <p class="item-description">Community building and event curation</p>
+                        </div>
+                    </div>
+
+                    <!-- Startup Safari Photo -->
+                    <div class="bento-item">
+                        <div class="image-card">
+                            <img src="photos/startup-safari.jpg" alt="Startup Safari">
+                            <div class="caption">Startup Safari</div>
+                        </div>
+                    </div>
+
+                    <!-- Startup Safari -->
+                    <div class="bento-item">
+                        <div class="item-content">
+                            <h2 class="item-title">Startup Safari</h2>
+                            <p class="item-description">Startup ecosystem event organization</p>
+                        </div>
+                    </div>
+
+                    <!-- Xaver Varnus Tour Photo -->
+                    <div class="bento-item">
+                        <div class="image-card">
+                            <img src="photos/varnus.jpg" alt="Xaver Varnus Tour">
+                            <div class="caption">Xaver Varnus Tour</div>
+                        </div>
+                    </div>
+
+                    <!-- Xaver Varnus Tour Description -->
+                    <div class="bento-item">
+                        <div class="item-content">
+                            <h2 class="item-title">Xaver Varnus Tour</h2>
+                            <p class="item-description">Solo guitarist in an improvisational section of the tour. A small but transformative experience that opened entirely new dimensions in musical thinking and performance.</p>
+                        </div>
+                    </div>
+
+                    <!-- Insert Project -->
+                    <div class="bento-item span-2">
+                        <div class="item-content">
+                            <h2 class="item-title">Insert — EU-Funded Creative Platform</h2>
+                            <p class="item-description">While working at Adaptér, led the development of Insert—a massive EU-funded experiment connecting creators, resources, and community initiatives. Platform for events, workshops, skills, spaces, and tools. Building bridges between inspiration and action.</p>
+                        </div>
+                    </div>
+
+                    <!-- Section Header -->
+                    <div class="section-header">Somló Abbey Winery 🍷</div>
+
+                    <!-- Winery Hero -->
+                    <div class="bento-item span-2">
+                        <div class="item-content">
+                            <h2 class="item-title">Family Winery in Somló</h2>
+                            <p class="item-description">My brother's winery in one of Hungary's most unique volcanic wine regions. Ancient vineyards, natural winemaking, stories in every bottle. It's where tradition meets innovation, and where I reconnect with what matters.</p>
+                        </div>
+                    </div>
+
+                    <!-- Substack Link -->
+                    <a href="#" class="bento-item link-item">
+                        <div class="link-icon">
+                            <svg width="20" height="20" fill="white" viewBox="0 0 24 24">
+                                <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
+                            </svg>
+                        </div>
+                        <div class="link-info">
+                            <h3>Somló Stories</h3>
+                            <p>Our Substack about wine, terroir, and life</p>
+                        </div>
+                    </a>
+
+                    <!-- Winery Image -->
+                    <div class="bento-item">
+                        <div class="image-card">
+                            <img src="photos/winery.jpg" alt="Somló Winery">
+                            <div class="caption">Somló Abbey Winery</div>
+                        </div>
+                    </div>
+
+                    <!-- Section Header -->
+                    <div class="section-header">Background 📅</div>
+
+                    <!-- Timeline Overview -->
+                    <div class="bento-item span-2">
+                        <div class="item-content">
+                            <h2 class="item-title">2006 → 2025</h2>
+                            <p class="item-description">Technical support → media production → frontend dev → B2B growth. Public sector → e-commerce → enterprise software. Every role built the foundation for what I do today.</p>
+                        </div>
+                    </div>
+
+                    <!-- Timeline -->
+                    <div class="bento-item span-2">
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-year">2025</div>
+                                <div class="timeline-content">
+                                    <h3>LogiNet International</h3>
+                                    <p>Sales Marketing Manager</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-year">2023</div>
+                                <div class="timeline-content">
+                                    <h3>22.design</h3>
+                                    <p>Chief Sales & Marketing Officer</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-year">2021</div>
+                                <div class="timeline-content">
+                                    <h3>Freelance Producer / Fixer</h3>
+                                    <p>NYT, Vice, ZDF, Al Jazeera</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-year">2018</div>
+                                <div class="timeline-content">
+                                    <h3>Adaptér</h3>
+                                    <p>Business Development Manager</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-year">2015</div>
+                                <div class="timeline-content">
+                                    <h3>Bánkitó Festival</h3>
+                                    <p>Director of Communications & PR</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-year">2014</div>
+                                <div class="timeline-content">
+                                    <h3>Auróra Social Center</h3>
+                                    <p>Director of Communications</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-year">2013</div>
+                                <div class="timeline-content">
+                                    <h3>Studio Hansa</h3>
+                                    <p>Frontend Developer</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-year">2011</div>
+                                <div class="timeline-content">
+                                    <h3>Égboltkép (Osteroo)</h3>
+                                    <p>Co-Founder & CEO</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-year">2010</div>
+                                <div class="timeline-content">
+                                    <h3>FUNZine Magazine</h3>
+                                    <p>Co-Founder</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-year">2006</div>
+                                <div class="timeline-content">
+                                    <h3>Various Roles</h3>
+                                    <p>Technical Support & Early Career</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Logo Wall - Floating Section -->
+                    <div class="logo-section">
+                        <p class="logo-section-title">Worked with</p>
+                        <div class="logo-wall">
+                            <img src="logos/nyt.svg" alt="New York Times" class="logo-item">
+                            <img src="logos/vice.svg" alt="Vice" class="logo-item">
+                            <img src="logos/aljazeera.svg" alt="Al Jazeera" class="logo-item">
+                            <img src="logos/zdf.svg" alt="ZDF" class="logo-item">
+                        </div>
+                    </div>
+
+                    <!-- Section Header -->
+                    <div class="section-header">Connect ✉️</div>
+
+                    <!-- LinkedIn -->
+                    <a href="https://www.linkedin.com/in/aaronlukacs" class="bento-item link-item">
+                        <div class="link-icon">
+                            <svg width="20" height="20" fill="white" viewBox="0 0 24 24">
+                                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+                                <circle cx="4" cy="4" r="2"/>
+                            </svg>
+                        </div>
+                        <div class="link-info">
+                            <h3>LinkedIn</h3>
+                            <p>Professional network</p>
+                        </div>
+                    </a>
+
+                    <!-- Email -->
+                    <a href="mailto:contact@example.com" class="bento-item link-item">
+                        <div class="link-icon">
+                            <svg width="20" height="20" fill="white" viewBox="0 0 24 24">
+                                <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+                        <div class="link-info">
+                            <h3>Email</h3>
+                            <p>Direct contact</p>
+                        </div>
+                    </a>
+
+                    <!-- Final CTA -->
+                    <div class="bento-item span-2">
+                        <div class="item-content">
+                            <h2 class="item-title">Let's talk</h2>
+                            <p class="item-description">If you're building something and need help making it clear, compelling, and ready for market—let's connect.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
