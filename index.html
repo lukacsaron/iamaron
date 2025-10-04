@@ -7,688 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --color-bg: #FAFAFA;
-            --color-card: #FFFFFF;
-            --color-text: #1A1A1A;
-            --color-text-secondary: #666666;
-            --color-border: rgba(0, 0, 0, 0.06);
-            --color-accent: #768CFF;
-            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
-            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--color-bg);
-            color: var(--color-text);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 80px 60px;
-        }
-
-        .layout {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 80px;
-            align-items: start;
-        }
-
-        /* Left Profile Section */
-        .profile-section {
-            position: sticky;
-            top: 80px;
-            padding-right: 40px;
-        }
-
-        .avatar {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            margin-bottom: 32px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-        }
-
-        .avatar::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 50%;
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-        }
-
-        h1 {
-            font-size: 42px;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            line-height: 1.1;
-            margin-bottom: 12px;
-        }
-
-        .tagline {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--color-accent);
-            margin-bottom: 24px;
-        }
-
-        .bio {
-            font-size: 15px;
-            line-height: 1.6;
-            color: var(--color-text-secondary);
-            margin-bottom: 24px;
-        }
-
-        .chips {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 24px;
-        }
-
-        .chip {
-            padding: 6px 12px;
-            background: rgba(118, 140, 255, 0.1);
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--color-accent);
-        }
-
-        .cta-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 24px;
-        }
-
-        .btn {
-            padding: 12px 20px;
-            border-radius: 12px;
-            font-size: 14px;
-            font-weight: 600;
-            text-decoration: none;
-            text-align: center;
-            transition: all 0.2s;
-        }
-
-        .border-radius-none {
-            border-radius: 0 !important;
-        }
-
-        .bento-item.border-radius-none::before {
-            display: none;
-        }
-
-        .btn-primary {
-            background: var(--color-accent);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #5a6fd9;
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background: var(--color-card);
-            color: var(--color-text);
-            border: 1px solid var(--color-border);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--color-accent);
-        }
-
-        .social-proof {
-            padding-top: 24px;
-            border-top: 1px solid var(--color-border);
-        }
-
-        .social-proof-title {
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--color-text-secondary);
-            margin-bottom: 12px;
-        }
-
-        .social-proof-text {
-            font-size: 13px;
-            color: var(--color-text-secondary);
-            line-height: 1.5;
-        }
-
-        /* Right Bento Grid Section */
-        .bento-section {
-            min-height: 100vh;
-        }
-
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            width: 100%;
-        }
-
-        .bento-item {
-            background: var(--color-card);
-            border-radius: 28px;
-            border: 1px solid var(--color-border);
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .bento-item::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 28px;
-            padding: 1px;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 100%);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
-        }
-
-        .bento-item:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-            border-color: rgba(0, 0, 0, 0.1);
-        }
-
-        .bento-item:hover::before {
-            opacity: 1;
-        }
-
-        /* Grid sizes */
-        .span-2 {
-            grid-column: span 2;
-        }
-
-        .row-span-24 {
-            grid-row: span 24;
-        }
-
-        .row-span-12 {
-            grid-row: span 12;
-        }
-
-        .row-span-4 {
-            grid-row: span 4;
-        }
-
-        .row-span-2 {
-            grid-row: span 2;
-        }
-
-        .item-content {
-            padding: 28px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            min-height: 140px;
-        }
-
-        .item-title {
-            font-size: 19px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            line-height: 1.3;
-        }
-
-        .item-subtitle {
-            font-size: 9px;
-            font-weight: 500;
-            color: var(--color-accent);
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .item-description {
-            font-size: 15px;
-            color: var(--color-text-secondary);
-            line-height: 1.6;
-        }
-
-        .item-list {
-            list-style: none;
-            margin: 8px 0 0 0;
-        }
-
-        .item-list li {
-            font-size: 14px;
-            color: var(--color-text-secondary);
-            line-height: 1.6;
-            padding-left: 18px;
-            position: relative;
-            margin-bottom: 6px;
-        }
-
-        .item-list li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--color-accent);
-        }
-
-        /* Link Items */
-        .link-item {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            padding: 24px;
-            text-decoration: none;
-            color: inherit;
-            min-height: 120px;
-        }
-
-        .link-icon {
-            width: 56px;
-            height: 56px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-        }
-
-        .link-info h3 {
-            font-size: 17px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .link-info p {
-            font-size: 14px;
-            color: var(--color-text-secondary);
-        }
-
-        /* Section Headers */
-        .section-header {
-            padding: 16px 0;
-            font-size: 13px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--color-text-secondary);
-            grid-column: 1 / -1;
-            margin-top: 20px;
-        }
-
-        /* Image Cards */
-        .image-card {
-            position: relative;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .image-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-image: inherit;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .bento-item:hover .image-card::before {
-            transform: scale(1.08);
-        }
-
-        .caption {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            padding: 10px 16px;
-            border-radius: 12px;
-            font-size: 14px;
-            font-weight: 500;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            z-index: 1;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            max-width: calc(100% - 40px);
-            width: fit-content;
-        }
-
-        .bento-item:hover .caption {
-            transform: translateY(-3px);
-        }
-
-        /* CTA Link */
-        .cta-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 16px;
-            padding: 8px 12px;
-            background: rgba(118, 140, 255, 0.1);
-            border-radius: 8px;
-            font-size: 13px;
-            color: var(--color-accent);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.2s;
-            width: fit-content;
-        }
-
-        .cta-link:hover {
-            background: rgba(118, 140, 255, 0.15);
-            transform: translateY(-1px);
-        }
-
-        /* Video Card */
-        .video-card {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            overflow: hidden;
-            border-radius: 28px 28px 0 0;
-        }
-
-        .video-card iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 28px 28px 0 0;
-        }
-
-        /* Map Widget */
-        .map-widget {
-            position: relative;
-            height: 300px;
-            overflow: hidden;
-            cursor: default;
-            display: block;
-        }
-
-        .map-widget iframe {
-            position: absolute;
-            top: -25%;
-            left: -25%;
-            width: 150%;
-            height: 150%;
-            border: none;
-            opacity: 0.95;
-            pointer-events: none;
-            cursor: default;
-        }
-
-        .map-marker {
-            position: absolute;
-            transform: translate(-50%, -50%);
-            width: 28px;
-            height: 28px;
-            z-index: 10;
-        }
-
-        .marker-pulse {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            width: 48px;
-            height: 48px;
-            transform: translate(-50%, -50%);
-            background: #EA4335;
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0.2;
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1.5);
-                opacity: 0;
-            }
-        }
-
-        .marker-dot {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .marker-dot::before {
-            content: '';
-            position: absolute;
-            inset: 3px;
-            background: #EA4335;
-            border-radius: 50%;
-        }
-
-        .marker-dot::after {
-            content: '';
-            position: absolute;
-            inset: 5px;
-            background: #EA4335;
-            border-radius: 50%;
-        }
-
-        .cloud {
-            position: absolute;
-            width: 500px;
-            height: 200px;
-            opacity: 0.4;
-            filter: blur(3px);
-            animation: float 35s infinite linear;
-            z-index: 5;
-            pointer-events: none;
-        }
-
-        .cloud:nth-child(2) {
-            animation-delay: -15s;
-            top: 30%;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateX(-100%);
-            }
-            100% {
-                transform: translateX(calc(100% + 500px));
-            }
-        }
-
-        .plane {
-            position: absolute;
-            width: 24px;
-            animation: fly 45s infinite linear;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
-        }
-
-        @keyframes fly {
-            0% {
-                left: -5%;
-                top: 20%;
-            }
-            50% {
-                left: 105%;
-                top: 70%;
-            }
-            100% {
-                left: -5%;
-                top: 20%;
-            }
-        }
-
-        .map-caption {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            padding: 8px 16px;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 500;
-            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
-            z-index: 10;
-        }
-
-        /* Logo Wall - Floating */
-        .logo-section {
-            grid-column: 1 / -1;
-            margin: 40px 0;
-            padding: 40px 0;
-        }
-
-        .logo-section-title {
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--color-text-secondary);
-            margin-bottom: 24px;
-            text-align: center;
-        }
-
-        .logo-wall {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 32px 48px;
-            align-items: center;
-            justify-content: center;
-            opacity: 0.6;
-        }
-
-        .logo-item {
-            height: 32px;
-            filter: grayscale(100%);
-            transition: all 0.3s;
-        }
-
-        .logo-item:hover {
-            filter: grayscale(0%);
-            opacity: 1;
-        }
-
-        /* Timeline */
-        .timeline {
-            padding: 32px 28px;
-        }
-
-        .timeline-item {
-            display: grid;
-            grid-template-columns: 80px 1fr;
-            gap: 24px;
-            padding: 16px 0;
-            border-bottom: 1px solid var(--color-border);
-        }
-
-        .timeline-item:last-child {
-            border-bottom: none;
-        }
-
-        .timeline-year {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--color-accent);
-        }
-
-        .timeline-content h3 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 4px;
-            line-height: 1.3;
-        }
-
-        .timeline-content p {
-            font-size: 14px;
-            color: var(--color-text-secondary);
-            line-height: 1.5;
-        }
-
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .layout {
-                grid-template-columns: 1fr;
-                gap: 60px;
-            }
-
-            .profile-section {
-                position: relative;
-                top: 0;
-                padding-right: 0;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 40px 24px;
-            }
-
-            h1 {
-                font-size: 32px;
-            }
-
-            .bio {
-                font-size: 14px;
-            }
-
-            .bento-grid {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-
-            .span-2 {
-                grid-column: span 1;
-            }
-
-            .avatar {
-                width: 120px;
-                height: 120px;
-            }
-
-            .image-card {
-                height: 180px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
@@ -696,7 +15,7 @@
             <!-- Left Profile Section (1/3) -->
             <div class="profile-section">
                 <div class="avatar">
-                    <img src="aron.jpg" alt="Aron Lukacs" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="aron.jpg" alt="Aron Lukacs">
                 </div>
                 <h1>Aron Lukacs</h1>
                 <p class="tagline">Builder, Connector, Storyteller</p>
@@ -727,20 +46,20 @@
                 <div class="bento-grid">
 
                     <!-- Intro Text -->
-                    <div class="bento-item span-2 border-radius-none" style="background: transparent; border: none; box-shadow: none; padding: 0;">
-                        <div style="padding: 0 0 40px 0;">
-                            <p style="margin: 0; line-height: 1.4; letter-spacing: -0.02em;">
-                                <span style="font-size: 34px; font-weight: 700; color: var(--color-text); display: block; line-height: 1.3;">Hey, I'm Aron 👋 — I connect dots between <em style="font-style: normal; color: var(--color-accent);">culture, technology, and business</em> that most people don't see.</span>
-                                <span style="font-size: 20px; font-weight: 500; color: var(--color-text-secondary); display: block; margin-top: 18px; line-height: 1.5;">
-                                    At <strong style="color: var(--color-accent);">LogiNet</strong>, AI solutions that solve real problems, not just look good in demos.
+                    <div class="bento-item span-2 section-intro border-radius-none">
+                        <div class="section-intro-wrapper">
+                            <p class="section-intro-text">
+                                <span class="intro-heading">Hey, I'm Aron 👋 — I connect dots between <em class="intro-accent">culture, technology, and business</em> that most people don't see.</span>
+                                <span class="intro-subheading-large">
+                                    At <strong class="accent-strong">LogiNet</strong>, AI solutions that solve real problems, not just look good in demos.
                                 </span>
-                                <span style="font-size: 20px; font-weight: 500; color: var(--color-text-secondary); display: block; margin-top: 6px; line-height: 1.5;">
-                                    At <strong style="color: var(--color-accent);">22.design</strong>, websites that turn browsers into buyers 🎯
+                                <span class="intro-subheading-large compact">
+                                    At <strong class="accent-strong">22.design</strong>, websites that turn browsers into buyers 🎯
                                 </span>
-                                <span style="font-size: 17px; font-weight: 400; color: var(--color-text-secondary); display: block; margin-top: 22px; opacity: 0.75; line-height: 1.6;">
+                                <span class="intro-body-small">
                                     But I didn't start here. The journey went through festivals, war zones, failed startups, cultural centers under attack, and a psychedelic guitar band touring Russia.
                                 </span>
-                                <span style="font-size: 16px; font-weight: 500; color: var(--color-text); display: block; margin-top: 16px; opacity: 0.6;">
+                                <span class="intro-cta">
                                     👇 Keep scrolling—it gets interesting
                                 </span>
                             </p>
@@ -751,10 +70,10 @@
                     <div class="bento-item">
                         <div class="map-widget">
                             <!-- Google Maps iframe centered on Budapest -->
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d9000000!2d19.0402!3d47.4979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1234567890!5m2!1sen!2s" style="filter: saturate(0.85) brightness(1.05);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d9000000!2d19.0402!3d47.4979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1234567890!5m2!1sen!2s" class="map-iframe-filter" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
                             <!-- Budapest marker -->
-                            <div class="map-marker" style="left: 53%; top: 54%;">
+                            <div class="map-marker map-marker-budapest">
                                 <div class="marker-pulse"></div>
                                 <div class="marker-dot"></div>
                             </div>
@@ -794,7 +113,7 @@
                     <!-- Section Header -->
                     <!-- LogiNet & 22 Portrait Photo -->
                     <div class="bento-item row-span-2">
-                        <div class="image-card" style="height: 100%; background-image: url('photos/loginet-22.jpg');"></div>
+                        <div class="image-card image-full-height bg-loginet-22"></div>
                         <div class="caption">UX workshop on Service Design Day</div>
                     </div>
 
@@ -815,9 +134,9 @@
 
                     <!-- 22 Design Studio -->
                     <div class="bento-item span-2">
-                        <div style="display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: center; padding: 28px; height: 100%;">
+                        <div class="grid-22design">
                             <div>
-                                <h2 class="item-title" style="margin-bottom: 8px;">22.design</h2>
+                                <h2 class="item-title title-margin-8">22.design</h2>
                                 <div class="item-subtitle">Marketing & Business Development</div>
                                 <p class="item-description">Conversion architects from Budapest. UX/UI design, no-code development, and research-driven strategy that actually moves metrics. 200+ digital products optimized, 22% average conversion rate increase. Senior-only team building experiences that don't just look good—they sell.</p>
                                 <a href="https://22.design/" target="_blank" class="cta-link">
@@ -827,8 +146,8 @@
                                     </svg>
                                 </a>
                             </div>
-                            <div style="width: 180px; height: 180px; border-radius: 16px; overflow: hidden; flex-shrink: 0;">
-                                <img src="photos/22design.avif" alt="22.design" style="height: 100%; object-fit: cover;">
+                            <div class="image-square-180">
+                                <img src="photos/22design.avif" alt="22.design">
                             </div>
                         </div>
                     </div>
@@ -837,12 +156,12 @@
                     <div class="section-header">My professional focus 🎯</div>
 
                     <!-- Professional Focus Intro -->
-                    <div class="bento-item span-2 border-radius-none" style="background: transparent; border: none; box-shadow: none; padding: 0;">
-                        <div style="padding: 0 0 30px 0;">
-                            <p style="margin: 0; line-height: 1.4; letter-spacing: -0.02em;">
-                                <span style="font-size: 28px; font-weight: 700; color: var(--color-text); display: block; line-height: 1.3;">The best solutions are simple -</span>
-                                <span style="font-size: 28px; font-weight: 700; color: var(--color-text); display: block; margin-top: 2px;">getting there is the <em style="font-style: normal; color: var(--color-accent);">hard part</em>.</span>
-                                <span style="font-size: 18px; font-weight: 400; color: var(--color-text-secondary); display: block; margin-top: 16px; line-height: 1.6; opacity: 0.85;">
+                    <div class="bento-item span-2 section-intro border-radius-none">
+                        <div class="section-intro-wrapper compact">
+                            <p class="section-intro-text">
+                                <span class="intro-heading-medium">The best solutions are simple -</span>
+                                <span class="intro-heading-medium line-2">getting there is the <em class="intro-accent">hard part</em>.</span>
+                                <span class="intro-body">
                                     Whether I'm positioning an offer, implementing AI, building prototypes, or shaping teams - it's about cutting through complexity to find what actually works. No hype, no theater. Just clarity, speed, and keeping it human.
                                 </span>
                             </p>
@@ -885,12 +204,12 @@
                     <div class="section-header">Ventures 🚀</div>
 
                     <!-- Ventures Intro -->
-                    <div class="bento-item span-2 border-radius-none" style="background: transparent; border: none; box-shadow: none; padding: 0;">
-                        <div style="padding: 0 0 30px 0;">
-                            <p style="margin: 0; line-height: 1.4; letter-spacing: -0.02em;">
-                                <span style="font-size: 28px; font-weight: 700; color: var(--color-text); display: block; line-height: 1.3;">I've always loved building -</span>
-                                <span style="font-size: 28px; font-weight: 700; color: var(--color-text); display: block; margin-top: 2px;">taking ideas from zero to <em style="font-style: normal; color: var(--color-accent);">something real</em>.</span>
-                                <span style="font-size: 18px; font-weight: 400; color: var(--color-text-secondary); display: block; margin-top: 16px; line-height: 1.6; opacity: 0.85;">
+                    <div class="bento-item span-2 section-intro border-radius-none">
+                        <div class="section-intro-wrapper compact">
+                            <p class="section-intro-text">
+                                <span class="intro-heading-medium">I've always loved building -</span>
+                                <span class="intro-heading-medium line-2">taking ideas from zero to <em class="intro-accent">something real</em>.</span>
+                                <span class="intro-body">
                                     Tech, creativity, strategy, storytelling—I play them all, metaphorically speaking. Multiple instruments, one vision. Because great ventures aren't separate from culture or community. They're infrastructure. Innovation and successful businesses are just as essential to healthy societies as arts and open dialogue. Two sides of the same mission: building what matters.
                                 </span>
                             </p>
@@ -928,7 +247,7 @@
 
                     <!-- Shark Tank Photo -->
                     <div class="bento-item row-span-12 span-2">
-                        <div class="image-card" style="background-image: url('photos/sharktank.jpg');">
+                        <div class="image-card bg-sharktank">
                             <div class="caption">The Shark Tank studio in RTL </div>
                         </div>
                     </div>
@@ -937,7 +256,7 @@
 
                     <!-- BiTS labo.fr Photo -->
                     <div class="bento-item">
-                        <div class="image-card" style="background-image: url('photos/bits.jpg');">
+                        <div class="image-card bg-bits">
                             <div class="caption">BiTS labo.fr</div>
                         </div>
                     </div>
@@ -948,14 +267,14 @@
                             <h2 class="item-title">BiTS labo.fr</h2>
                             <div class="item-subtitle">The second try...</div>
                             <p class="item-description">Co-founder & marketing manager for Budapest-based crazy surrrealist clothing brand. Fashion shows, BiTS Radio parties, webshop ops, lots of Wordpress development - kind of a professional playground.</p>
-                            <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px;">
-                                <a href="https://www.youtube.com/channel/UCDGYSQC_wSISyNdOMvDh9IA" target="_blank" class="cta-link" style="margin-top: 0;">
+                            <div class="link-flex-wrapper">
+                                <a href="https://www.youtube.com/channel/UCDGYSQC_wSISyNdOMvDh9IA" target="_blank" class="cta-link no-margin-top">
                                     <span>BiTS Radio</span>
                                     <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                                         <path d="M7 17L17 7M7 7h10v10"/>
                                     </svg>
                                 </a>
-                                <a href="https://divany.hu/offline/2013/10/25/avantgard_kreaciokba_bujtatna_az_utolso_halandot_a_bits_labo/" target="_blank" class="cta-link" style="margin-top: 0;">
+                                <a href="https://divany.hu/offline/2013/10/25/avantgard_kreaciokba_bujtatna_az_utolso_halandot_a_bits_labo/" target="_blank" class="cta-link no-margin-top">
                                     <span>Dívány Interview</span>
                                     <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                                         <path d="M7 17L17 7M7 7h10v10"/>
@@ -975,12 +294,12 @@
                     </div>
 
                     <!-- Flashbird Video -->
-                    <div class="bento-item" style="overflow: visible;">
-                        <div class="video-card" style="padding-bottom: 56.25%; margin-bottom: 0;">
+                    <div class="bento-item overflow-visible">
+                        <div class="video-card video-wrapper">
                             <iframe src="https://www.youtube-nocookie.com/embed/u7beg7d1q5Q?si=tGtx6UFUcfxT18Bi&controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
-                        <div style="padding: 20px;">
-                            <p style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; margin: 0;">As much as it was an early professional friendship project, this video still takes a special place in my heart.</p>
+                        <div class="video-caption">
+                            <p class="caption-text">As much as it was an early professional friendship project, this video still takes a special place in my heart.</p>
                         </div>
                     </div>
 
@@ -988,12 +307,12 @@
                     <div class="section-header">Media & Production 🎥</div>
 
                     <!-- Media Intro -->
-                    <div class="bento-item span-2 border-radius-none" style="background: transparent; border: none; box-shadow: none; padding: 0;">
-                        <div style="padding: 0 0 30px 0;">
-                            <p style="margin: 0; line-height: 1.4; letter-spacing: -0.02em;">
-                                <span style="font-size: 28px; font-weight: 700; color: var(--color-text); display: block; line-height: 1.3;">Field production is chaos -</span>
-                                <span style="font-size: 28px; font-weight: 700; color: var(--color-text); display: block; margin-top: 2px;">every decision <em style="font-style: normal; color: var(--color-accent);">matters</em>, or you lose the story.</span>
-                                <span style="font-size: 18px; font-weight: 400; color: var(--color-text-secondary); display: block; margin-top: 16px; line-height: 1.6; opacity: 0.85;">
+                    <div class="bento-item span-2 section-intro border-radius-none">
+                        <div class="section-intro-wrapper compact">
+                            <p class="section-intro-text">
+                                <span class="intro-heading-medium">Field production is chaos -</span>
+                                <span class="intro-heading-medium line-2">every decision <em class="intro-accent">matters</em>, or you lose the story.</span>
+                                <span class="intro-body">
                                     I love that pressure. Briefing journalists on political context, "accidentally" trafficking crews across borders for the perfect shot, making split-second calls in the field. But the most important lesson I learned from Hind Hassan at Vice: it always has to speak about - and for - the people who are affected. The story isn't ours. It's theirs. We're just the conduit.
                                 </span>
                             </p>
@@ -1002,7 +321,7 @@
 
                     <!-- Media Production -->
                     <div class="bento-item row-span-2">
-                        <div class="image-card" style="height: 100%; background-image: url('photos/fixer.jpg');">
+                        <div class="image-card image-full-height bg-fixer">
                             <div class="caption">In the Nickelsdorf temporary refugee camp with Tari Anek from Al Jazeera Balkans</div>
                         </div>
                     </div>
@@ -1016,12 +335,12 @@
                     </div>
 
                     <!-- Vice Refugee Crisis Video -->
-                    <div class="bento-item" style="overflow: visible;">
-                        <div class="video-card" style="padding-bottom: 56.25%; margin-bottom: 0;">
+                    <div class="bento-item overflow-visible">
+                        <div class="video-card video-wrapper">
                             <iframe src="https://www.youtube.com/embed/pz2kDlmHbRQ" title="Vice refugee crisis coverage" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
                         </div>
-                        <div style="padding: 20px;">
-                            <p style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; margin: 0;">A Vice piece about the 2015 refugee crisis I worked on as a local producer</p>
+                        <div class="video-caption">
+                            <p class="caption-text">A Vice piece about the 2015 refugee crisis I worked on as a local producer</p>
                         </div>
                     </div>
 
@@ -1043,18 +362,18 @@
 
                     <!-- Sociomapping Photo -->
                     <div class="bento-item">
-                        <div class="image-card" style="background-image: url('photos/sociomapping.jpg');">
+                        <div class="image-card bg-sociomapping">
                             <div class="caption">In Adaptér with economist Zoltan Pogatsa</div>
                         </div>
                     </div>
 
-                    <div class="bento-item" style="overflow: visible;">
-                        <div class="video-card" style="padding-bottom: 56.25%; margin-bottom: 0;">
+                    <div class="bento-item overflow-visible">
+                        <div class="video-card video-wrapper">
                             <iframe src="https://www.youtube.com/embed/qe72GdtJE2Q" title=""Orbán Viktor pártja... Magyar Péter pártja..." – Ez elképzelhetetlen Angliában | Pogátsa Zoltán
 " frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
                         </div>
-                        <div style="padding: 20px;">
-                            <p style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; margin: 0;">One of my favourite episodes, about the UK</p>
+                        <div class="video-caption">
+                            <p class="caption-text">One of my favourite episodes, about the UK</p>
                         </div>
                     </div>
 
@@ -1064,12 +383,12 @@
                     <div class="section-header">Cultural Work 🎭</div>
 
                     <!-- Cultural Work Description -->
-                    <div class="bento-item span-2 border-radius-none" style="background: transparent; border: none; box-shadow: none; padding: 0;">
-                        <div style="padding: 0 0 30px 0;">
-                            <p style="margin: 0; line-height: 1.4; letter-spacing: -0.02em;">
-                                <span style="font-size: 28px; font-weight: 700; color: var(--color-text); display: block; line-height: 1.3;">Culture isn't decoration -</span>
-                                <span style="font-size: 28px; font-weight: 700; color: var(--color-text); display: block; margin-top: 2px;">it's the <em style="font-style: normal; color: var(--color-accent);">infrastructure</em> of healthy societies.</span>
-                                <span style="font-size: 18px; font-weight: 400; color: var(--color-text-secondary); display: block; margin-top: 16px; line-height: 1.6; opacity: 0.85;">
+                    <div class="bento-item span-2 section-intro border-radius-none">
+                        <div class="section-intro-wrapper compact">
+                            <p class="section-intro-text">
+                                <span class="intro-heading-medium">Culture isn't decoration -</span>
+                                <span class="intro-heading-medium line-2">it's the <em class="intro-accent">infrastructure</em> of healthy societies.</span>
+                                <span class="intro-body">
                                     Arts, music, open discussions about politics and social issues-these aren't luxuries. They're how we create spaces where people think critically, argue constructively, and stay open-minded. I've spent years building those spaces, believing they matter more than almost anything else for the next generation.
                                 </span>
                             </p>
@@ -1078,7 +397,7 @@
 
                     <!-- Bánkitó Festival -->
                     <div class="bento-item row-span-12">
-                        <div class="image-card" style="background-image: url('photos/bankito.jpg');">
+                        <div class="image-card bg-bankito">
                             <div class="caption">An iconic Hungarian mid-sized festival</div>
                         </div>
                     </div>
@@ -1089,14 +408,14 @@
                             <h2 class="item-title">Bánkitó Festival</h2>
                             <div class="item-subtitle">Director of Communications · 2014-2019</div>
                             <p class="item-description">Led all communications for one of Hungary's most iconic independent festivals. Marketing campaigns, press relations, international partnerships. Built the buzz, managed the team, connected people across borders.</p>
-                            <hr style="border: none; border-top: 1px solid var(--color-border); margin: 16px 0;">
-                            <p class="item-description" style="margin-bottom: 0;">We always had the most daring and crazy campaigns with Bánkitó—pushing boundaries, breaking conventions, making noise that mattered.</p>
+                            <hr class="hr-divider">
+                            <p class="item-description no-margin">We always had the most daring and crazy campaigns with Bánkitó—pushing boundaries, breaking conventions, making noise that mattered.</p>
                         </div>
                     </div>
 
                     <!-- Auróra -->
                     <div class="bento-item row-span-12">
-                        <div class="image-card" style="background-image: url('photos/aurora.jpg');">
+                        <div class="image-card bg-aurora">
                             <div class="caption">Climate university at Auróra</div>
                         </div>
                     </div>
@@ -1118,7 +437,7 @@
 
                     <!-- Budapest Showcase Hub Photo -->
                     <div class="bento-item">
-                        <div class="image-card" style="background-image: url('photos/bush.jpg');">
+                        <div class="image-card bg-bush">
                             <div class="caption">How to enter the Russian music-market?</div>
                         </div>
                     </div>
@@ -1143,7 +462,7 @@
                     
                     <!-- Startup Safari Photo -->
                     <div class="bento-item">
-                        <div class="image-card" style="background-image: url('photos/startup-safari.jpg');">
+                        <div class="image-card bg-startup-safari">
                             <div class="caption">Presenting at Startup Safari</div>
                         </div>
                     </div>
@@ -1154,14 +473,14 @@
                             <h2 class="item-title">Xaver Varnus</h2>
                             <div class="item-subtitle">Tour Manager & Personal Assistant · 2012-2014</div>
                             <p class="item-description">Xaver didn't just hire me-he mentored me. As his tour manager and assistant, I organized sold-out concerts, handled logistics, bookings, social media. But more than that, he showed me the professional world of arts and performing artists from the inside. How discipline, passion, and relentless excellence look in practice.</p>
-                            <hr style="border: none; border-top: 1px solid var(--color-border); margin: 16px 0;">
+                            <hr class="hr-divider">
                             <p class="item-description">He railed me onto a journey I'm still on-connecting culture with people, building experiences that matter.</p>
                         </div>
                     </div>
 
                     <!-- Xaver Varnus Stage Photo -->
                     <div class="bento-item span-2 row-span-12">
-                        <div class="image-card" style="background-image: url('photos/xaver-stage.jpg');">
+                        <div class="image-card bg-xaver-stage">
                             <div class="caption">With Xaver Varnus, Mari Torocsik, Jozsef Barcza-Horvath and Tamas Czirjak on stage</div>
                         </div>
                     </div>
@@ -1184,12 +503,12 @@
                     </div>
 
                     <!-- Adaptér Video -->
-                    <div class="bento-item" style="overflow: visible;">
-                        <div class="video-card" style="padding-bottom: 56.25%; margin-bottom: 0;">
+                    <div class="bento-item overflow-visible">
+                        <div class="video-card video-wrapper">
                             <iframe src="https://www.youtube.com/embed/c3q8N-hrbjo" title="Adaptér video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
                         </div>
-                        <div style="padding: 20px;">
-                            <p style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; margin: 0;">Adaptér's creative technology knowledge base in action</p>
+                        <div class="video-caption">
+                            <p class="caption-text">Adaptér's creative technology knowledge base in action</p>
                         </div>
                     </div>
 
@@ -1197,12 +516,12 @@
                     <div class="section-header">Somló Abbey Winery 🍷</div>
 
                     <!-- Winery Intro -->
-                    <div class="bento-item span-2 border-radius-none" style="background: transparent; border: none; box-shadow: none; padding: 0;">
-                        <div style="padding: 0 0 30px 0;">
-                            <p style="margin: 0; line-height: 1.4; letter-spacing: -0.02em;">
-                                <span style="font-size: 28px; font-weight: 700; color: var(--color-text); display: block; line-height: 1.3;">Somló has always been home -</span>
-                                <span style="font-size: 28px; font-weight: 700; color: var(--color-text); display: block; margin-top: 2px;">just took a <em style="font-style: normal; color: var(--color-accent);">pandemic</em> to bring us back.</span>
-                                <span style="font-size: 18px; font-weight: 400; color: var(--color-text-secondary); display: block; margin-top: 16px; line-height: 1.6; opacity: 0.85;">
+                    <div class="bento-item span-2 section-intro border-radius-none">
+                        <div class="section-intro-wrapper compact">
+                            <p class="section-intro-text">
+                                <span class="intro-heading-medium">Somló has always been home -</span>
+                                <span class="intro-heading-medium line-2">just took a <em class="intro-accent">pandemic</em> to bring us back.</span>
+                                <span class="intro-body">
                                     Childhood summers at grandma's, volcanic soil, ancient vines. We always dreamt of leaving the city but never had the courage - until COVID gave us the push. Now we're here as much as possible, working with the family winery, reconnecting with what matters. This is where I escape the daily rush, step back, and see things clearly. Sometimes you need distance to find perspective.
                                 </span>
                             </p>
@@ -1225,7 +544,7 @@
 
                     <!-- Winery Image -->
                     <div class="bento-item row-span-4">
-                        <div class="image-card" style="background-image: url('photos/winery.jpg');">
+                        <div class="image-card bg-winery">
                             <div class="caption">In our family vinyards</div>
                         </div>
                     </div>
@@ -1251,11 +570,11 @@
                     <div class="section-header">On Repeat 🎧</div>
 
                     <!-- Spotify Intro -->
-                    <div class="bento-item span-2 border-radius-none" style="background: transparent; border: none; box-shadow: none; padding: 0;">
-                        <div style="padding: 0 0 30px 0;">
-                            <p style="margin: 0; line-height: 1.4; letter-spacing: -0.02em;">
-                                <span style="font-size: 28px; font-weight: 700; color: var(--color-text); display: block; line-height: 1.3;">Ethereal Piano</span>
-                                <span style="font-size: 18px; font-weight: 400; color: var(--color-text-secondary); display: block; margin-top: 16px; line-height: 1.6; opacity: 0.85;">
+                    <div class="bento-item span-2 section-intro border-radius-none">
+                        <div class="section-intro-wrapper compact">
+                            <p class="section-intro-text">
+                                <span class="intro-heading-medium">Ethereal Piano</span>
+                                <span class="intro-body">
                                     For the moments when I need to think clearly. Modern classical piano—Hania Rani, Nils Frahm, and others who understand that silence between notes matters as much as the sound.
                                 </span>
                             </p>
@@ -1263,8 +582,8 @@
                     </div>
 
                     <!-- Spotify Playlist -->
-                    <div class="bento-item span-2" style="padding: 0; overflow: hidden;">
-                        <iframe style="border-radius: 28px; width: 100%; height: 400px; border: none;" src="https://open.spotify.com/embed/playlist/7dcocpJck6YD0b9aOwV8P0?utm_source=generator" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    <div class="bento-item span-2 spotify-embed-wrapper">
+                        <iframe class="spotify-iframe" src="https://open.spotify.com/embed/playlist/7dcocpJck6YD0b9aOwV8P0?utm_source=generator" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                     </div>
 
                     <!-- Section Header -->
