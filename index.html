@@ -1032,35 +1032,77 @@
                             delay: index * 0.2, // 0.2s delay between each line
                         });
                     });
+
+                    // Animate intro-body spans - slide and fade from bottom
+                    const bodySpans = section.querySelectorAll('.intro-body');
+                    bodySpans.forEach((span, index) => {
+                        gsap.to(span, {
+                            scrollTrigger: {
+                                trigger: section,
+                                start: 'top 85%',
+                                toggleActions: 'play none none none',
+                            },
+                            y: 0,
+                            opacity: 0.85,
+                            duration: 0.8,
+                            ease: 'expo.out',
+                            delay: 0.4 + (index * 0.15), // Start after headings
+                            onComplete: () => {
+                                span.classList.add('animated');
+                            }
+                        });
+                    });
                 });
 
                 // Select all bento items except section intros
                 const bentoItems = gsap.utils.toArray('.bento-item:not(.section-intro)');
 
-                // Animate each item with scroll-linked scaling only
+                // Scroll-scrubbed scaling - completely tied to scroll position
                 bentoItems.forEach((item) => {
-                    gsap.fromTo(item,
-                        {
-                            scale: 0.75,
-                        },
-                        {
+                    // Calculate if item is too close to bottom to complete animation
+                    const rect = item.getBoundingClientRect();
+                    const itemTop = rect.top + window.scrollY;
+                    const docHeight = document.documentElement.scrollHeight;
+                    const windowHeight = window.innerHeight;
+                    const maxScroll = docHeight - windowHeight;
+
+                    // If item can't be scrolled to 40% viewport (not enough scroll room)
+                    const canCompleteAnimation = (itemTop - windowHeight * 0.4) < maxScroll;
+
+                    if (!canCompleteAnimation) {
+                        // Not enough scroll room: set to full scale immediately
+                        gsap.set(item, {
                             scale: 1,
-                            scrollTrigger: {
-                                trigger: item,
-                                start: 'top 90%',
-                                end: 'top 30%',
-                                scrub: true, // Perfectly smooth, tied directly to scroll
-                                // markers: true, // Uncomment for debugging
+                            opacity: 1,
+                        });
+                    } else {
+                        // Normal scroll-linked animation
+                        gsap.fromTo(item,
+                            {
+                                scale: 0.8,
+                                opacity: 0.6,
                             },
-                            ease: 'none',
-                        }
-                    );
+                            {
+                                scale: 1,
+                                opacity: 1,
+                                ease: 'none',
+                                scrollTrigger: {
+                                    trigger: item,
+                                    start: 'top 95%',
+                                    end: 'top 40%',
+                                    scrub: 0,
+                                    // markers: true, // Uncomment for debugging
+                                },
+                            }
+                        );
+                    }
                 });
             } else {
-                // For reduced motion, reset all scales
+                // For reduced motion, show all items immediately
                 const bentoItems = document.querySelectorAll('.bento-item:not(.section-intro)');
                 bentoItems.forEach(item => {
-                    item.style.transform = 'scale(1)';
+                    item.style.opacity = '1';
+                    item.style.transform = 'scale(1) translateZ(0)';
                 });
             }
         });
