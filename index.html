@@ -127,6 +127,14 @@
             transition: all 0.2s;
         }
 
+        .border-radius-none {
+            border-radius: 0 !important;
+        }
+
+        .bento-item.border-radius-none::before {
+            display: none;
+        }
+
         .btn-primary {
             background: var(--color-accent);
             color: white;
@@ -217,6 +225,18 @@
         /* Grid sizes */
         .span-2 {
             grid-column: span 2;
+        }
+
+        .row-span-24 {
+            grid-row: span 24;
+        }
+
+        .row-span-12 {
+            grid-row: span 12;
+        }
+
+        .row-span-4 {
+            grid-row: span 4;
         }
 
         .row-span-2 {
@@ -324,18 +344,22 @@
         /* Image Cards */
         .image-card {
             position: relative;
-            height: 200px;
+            height: 100%;
             overflow: hidden;
         }
 
-        .image-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .image-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-image: inherit;
             transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .bento-item:hover .image-card img {
+        .bento-item:hover .image-card::before {
             transform: scale(1.08);
         }
 
@@ -352,6 +376,36 @@
             font-weight: 500;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.3);
+            z-index: 1;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            max-width: calc(100% - 40px);
+            width: fit-content;
+        }
+
+        .bento-item:hover .caption {
+            transform: translateY(-3px);
+        }
+
+        /* CTA Link */
+        .cta-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            padding: 8px 12px;
+            background: rgba(118, 140, 255, 0.1);
+            border-radius: 8px;
+            font-size: 13px;
+            color: var(--color-accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+            width: fit-content;
+        }
+
+        .cta-link:hover {
+            background: rgba(118, 140, 255, 0.15);
+            transform: translateY(-1px);
         }
 
         /* Video Card */
@@ -645,17 +699,17 @@
                     <img src="aron.jpg" alt="Aron Lukacs" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 <h1>Aron Lukacs</h1>
-                <p class="tagline">Sales & Marketing Specialist</p>
-                <p class="bio">Helping B2B teams turn complex offers into clear value. Currently working across LogiNet International and 22.design.</p>
+                <p class="tagline">Builder, Connector, Storyteller</p>
+                <p class="bio">Sales & marketing across LogiNet and 22.design. But I got here through festivals, media production, and failed startups—not the usual route.</p>
 
                 <div class="chips">
                     <span class="chip">Budapest</span>
                     <span class="chip">B2B</span>
-                    <span class="chip">Enterprise</span>
-                    <span class="chip">GTM Strategy</span>
+                    <span class="chip">Media Production</span>
+                    <span class="chip">Dot Connector</span>
                 </div>
 
-                <p class="bio">From frontend development to go-to-market strategy. I bridge technical thinking with sales & marketing execution.</p>
+                <p class="bio">Turns out, briefing war correspondents and selling enterprise AI aren't that different. Both need clarity under pressure.</p>
 
                 <div class="cta-buttons">
                     <a href="#" class="btn btn-primary">Book a call</a>
@@ -664,13 +718,34 @@
 
                 <div class="social-proof">
                     <p class="social-proof-title">Worked with</p>
-                    <p class="social-proof-text">Auchan · Vodafone · ELTE · NYT · Vice · Al Jazeera</p>
+                    <p class="social-proof-text">Bankito Festival · NYT · Vice · Al Jazeera</p>
                 </div>
             </div>
 
             <!-- Right Bento Grid Section (2/3) -->
             <div class="bento-section">
                 <div class="bento-grid">
+
+                    <!-- Intro Text -->
+                    <div class="bento-item span-2 border-radius-none" style="background: transparent; border: none; box-shadow: none; padding: 0;">
+                        <div style="padding: 0 0 40px 0;">
+                            <p style="margin: 0; line-height: 1.4; letter-spacing: -0.02em;">
+                                <span style="font-size: 34px; font-weight: 700; color: var(--color-text); display: block; line-height: 1.3;">Hey, I'm Aron 👋 — I connect dots between <em style="font-style: normal; color: var(--color-accent);">culture, technology, and business</em> that most people don't see.</span>
+                                <span style="font-size: 20px; font-weight: 500; color: var(--color-text-secondary); display: block; margin-top: 18px; line-height: 1.5;">
+                                    At <strong style="color: var(--color-accent);">LogiNet</strong>, AI solutions that solve real problems, not just look good in demos.
+                                </span>
+                                <span style="font-size: 20px; font-weight: 500; color: var(--color-text-secondary); display: block; margin-top: 6px; line-height: 1.5;">
+                                    At <strong style="color: var(--color-accent);">22.design</strong>, websites that turn browsers into buyers 🎯
+                                </span>
+                                <span style="font-size: 17px; font-weight: 400; color: var(--color-text-secondary); display: block; margin-top: 22px; opacity: 0.75; line-height: 1.6;">
+                                    But I didn't start here. The journey went through festivals, war zones, failed startups, cultural centers under attack, and a psychedelic guitar band touring Russia.
+                                </span>
+                                <span style="font-size: 16px; font-weight: 500; color: var(--color-text); display: block; margin-top: 16px; opacity: 0.6;">
+                                    👇 Keep scrolling—it gets interesting
+                                </span>
+                            </p>
+                        </div>
+                    </div>
 
                     <!-- Location Map Widget -->
                     <div class="bento-item">
@@ -719,9 +794,8 @@
                     <!-- Section Header -->
                     <!-- LogiNet & 22 Portrait Photo -->
                     <div class="bento-item row-span-2">
-                        <div class="image-card" style="height: 100%;">
-                            <img src="photos/loginet-22.jpg" alt="LogiNet & 22 Design">
-                        </div>
+                        <div class="image-card" style="height: 100%; background-image: url('photos/loginet-22.jpg');"></div>
+                        <div class="caption">UX workshop on Service Design Day</div>
                     </div>
 
                     <!-- LogiNet International -->
@@ -730,7 +804,7 @@
                             <h2 class="item-title">LogiNet International</h2>
                             <div class="item-subtitle">Marketing & Business Development</div>
                             <p class="item-description">AI-enabled transformation partner delivering end-to-end software development since 2008. Custom AI solutions, web and mobile development for Vodafone, Auchan, Garmin.</p>
-                            <a href="https://loginet.com/" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 8px 16px; background: rgba(118, 140, 255, 0.1); border-radius: 8px; font-size: 13px; color: var(--color-accent); text-decoration: none; font-weight: 600; transition: all 0.2s;">
+                            <a href="https://loginet.com/" target="_blank" class="cta-link">
                                 <span>Explore LogiNet</span>
                                 <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                                     <path d="M7 17L17 7M7 7h10v10"/>
@@ -741,21 +815,39 @@
 
                     <!-- 22 Design Studio -->
                     <div class="bento-item span-2">
-                        <div class="item-content">
-                            <h2 class="item-title">22.design</h2>
-                            <div class="item-subtitle">Marketing & Business Development</div>
-                            <p class="item-description">Conversion architects from Budapest. UX/UI design, no-code development, and research-driven strategy that actually moves metrics. 200+ digital products optimized, 22% average conversion rate increase. Senior-only team building experiences that don't just look good—they sell.</p>
-                            <a href="https://22.design/" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 8px 16px; background: rgba(118, 140, 255, 0.1); border-radius: 8px; font-size: 13px; color: var(--color-accent); text-decoration: none; font-weight: 600; transition: all 0.2s;">
-                                <span>See Our Work</span>
-                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                                    <path d="M7 17L17 7M7 7h10v10"/>
-                                </svg>
-                            </a>
+                        <div style="display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: center; padding: 28px; height: 100%;">
+                            <div>
+                                <h2 class="item-title" style="margin-bottom: 8px;">22.design</h2>
+                                <div class="item-subtitle">Marketing & Business Development</div>
+                                <p class="item-description">Conversion architects from Budapest. UX/UI design, no-code development, and research-driven strategy that actually moves metrics. 200+ digital products optimized, 22% average conversion rate increase. Senior-only team building experiences that don't just look good—they sell.</p>
+                                <a href="https://22.design/" target="_blank" class="cta-link">
+                                    <span>See Our Work</span>
+                                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                        <path d="M7 17L17 7M7 7h10v10"/>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div style="width: 180px; height: 180px; border-radius: 16px; overflow: hidden; flex-shrink: 0;">
+                                <img src="photos/22design.avif" alt="22.design" style="height: 100%; object-fit: cover;">
+                            </div>
                         </div>
                     </div>
 
                     <!-- Section Header -->
-                    <div class="section-header">my professional focus</div>
+                    <div class="section-header">My professional focus 🎯</div>
+
+                    <!-- Professional Focus Intro -->
+                    <div class="bento-item span-2 border-radius-none" style="background: transparent; border: none; box-shadow: none; padding: 0;">
+                        <div style="padding: 0 0 30px 0;">
+                            <p style="margin: 0; line-height: 1.4; letter-spacing: -0.02em;">
+                                <span style="font-size: 28px; font-weight: 700; color: var(--color-text); display: block; line-height: 1.3;">The best solutions are simple -</span>
+                                <span style="font-size: 28px; font-weight: 700; color: var(--color-text); display: block; margin-top: 2px;">getting there is the <em style="font-style: normal; color: var(--color-accent);">hard part</em>.</span>
+                                <span style="font-size: 18px; font-weight: 400; color: var(--color-text-secondary); display: block; margin-top: 16px; line-height: 1.6; opacity: 0.85;">
+                                    Whether I'm positioning an offer, implementing AI, building prototypes, or shaping teams - it's about cutting through complexity to find what actually works. No hype, no theater. Just clarity, speed, and keeping it human.
+                                </span>
+                            </p>
+                        </div>
+                    </div>
 
                     <!-- Strategic Sales & Marketing -->
                     <div class="bento-item">
@@ -792,12 +884,26 @@
                     <!-- Section Header -->
                     <div class="section-header">Ventures 🚀</div>
 
+                    <!-- Ventures Intro -->
+                    <div class="bento-item span-2 border-radius-none" style="background: transparent; border: none; box-shadow: none; padding: 0;">
+                        <div style="padding: 0 0 30px 0;">
+                            <p style="margin: 0; line-height: 1.4; letter-spacing: -0.02em;">
+                                <span style="font-size: 28px; font-weight: 700; color: var(--color-text); display: block; line-height: 1.3;">I've always loved building -</span>
+                                <span style="font-size: 28px; font-weight: 700; color: var(--color-text); display: block; margin-top: 2px;">taking ideas from zero to <em style="font-style: normal; color: var(--color-accent);">something real</em>.</span>
+                                <span style="font-size: 18px; font-weight: 400; color: var(--color-text-secondary); display: block; margin-top: 16px; line-height: 1.6; opacity: 0.85;">
+                                    Tech, creativity, strategy, storytelling—I play them all, metaphorically speaking. Multiple instruments, one vision. Because great ventures aren't separate from culture or community. They're infrastructure. Innovation and successful businesses are just as essential to healthy societies as arts and open dialogue. Two sides of the same mission: building what matters.
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+
                     <!-- Osteroo -->
                     <div class="bento-item">
                         <div class="item-content">
-                            <h2 class="item-title">Osteroo</h2>
-                            <p class="item-description">Co-founded an image search engine backed by VC funds. Raised capital, built the product, learned from failure. The best lessons often come from what doesn't work.</p>
-                            <a href="https://www.forbes.hu/uzlet/balogh-petya-tulnyerte-magat-capak-kozott-lukacs-aron-egboltkep/" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 8px 16px; background: rgba(118, 140, 255, 0.1); border-radius: 8px; font-size: 13px; color: var(--color-accent); text-decoration: none; font-weight: 600; transition: all 0.2s;">
+                            <h2 class="item-title">Égboltkép (Osteroo)</h2>
+                            <div class="item-subtitle">CEO & Founder · Print-on-demand startup</div>
+                            <p class="item-description">Built a data-based print-on-demand platform for customizable personal gifts. Raised funding, led the team, ran the business. Then it failed. Those lessons - about building, selling, and knowing when to quit-shaped everything that came after.</p>
+                            <a href="https://www.forbes.hu/uzlet/balogh-petya-tulnyerte-magat-capak-kozott-lukacs-aron-egboltkep/" target="_blank" class="cta-link">
                                 <span>Read Forbes Interview</span>
                                 <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                                     <path d="M7 17L17 7M7 7h10v10"/>
@@ -811,7 +917,7 @@
                         <div class="item-content">
                             <h2 class="item-title">Hungarian Shark Tank</h2>
                             <p class="item-description">Pitched Osteroo and secured investment from Peter Balogh, renowned technology angel. The experience of standing in front of investors and defending your vision—invaluable.</p>
-                            <a href="https://rtl.hu/capakkozott/2021/04/09/sikersztori-mi-tortent-az-egboltkeppel-a-befektetes-utan" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 8px 16px; background: rgba(118, 140, 255, 0.1); border-radius: 8px; font-size: 13px; color: var(--color-accent); text-decoration: none; font-weight: 600; transition: all 0.2s;">
+                            <a href="https://rtl.hu/capakkozott/2021/04/09/sikersztori-mi-tortent-az-egboltkeppel-a-befektetes-utan" target="_blank" class="cta-link">
                                 <span>Read RTL Story</span>
                                 <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                                     <path d="M7 17L17 7M7 7h10v10"/>
@@ -821,10 +927,9 @@
                     </div>
 
                     <!-- Shark Tank Photo -->
-                    <div class="bento-item span-2">
-                        <div class="image-card">
-                            <img src="photos/sharktank.jpg" alt="Hungarian Shark Tank">
-                            <div class="caption">Hungarian Shark Tank</div>
+                    <div class="bento-item row-span-12 span-2">
+                        <div class="image-card" style="background-image: url('photos/sharktank.jpg');">
+                            <div class="caption">The Shark Tank studio in RTL </div>
                         </div>
                     </div>
 
@@ -832,8 +937,7 @@
 
                     <!-- BiTS labo.fr Photo -->
                     <div class="bento-item">
-                        <div class="image-card">
-                            <img src="photos/bitslabo.jpg" alt="BiTS labo.fr">
+                        <div class="image-card" style="background-image: url('photos/bits.jpg');">
                             <div class="caption">BiTS labo.fr</div>
                         </div>
                     </div>
@@ -842,21 +946,31 @@
                     <div class="bento-item">
                         <div class="item-content">
                             <h2 class="item-title">BiTS labo.fr</h2>
-                            <p class="item-description">Sales & Marketing Manager for London-based brand. Reseller contracts, fashion shows, BiTS Radio parties, webshop ops.</p>
-                            <a href="https://www.youtube.com/channel/UCDGYSQC_wSISyNdOMvDh9IA" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; font-size: 13px; color: var(--color-accent); text-decoration: none; font-weight: 500;">
-                                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                                </svg>
-                                BiTS Radio Channel
-                            </a>
+                            <div class="item-subtitle">The second try...</div>
+                            <p class="item-description">Co-founder & marketing manager for Budapest-based crazy surrrealist clothing brand. Fashion shows, BiTS Radio parties, webshop ops, lots of Wordpress development - kind of a professional playground.</p>
+                            <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px;">
+                                <a href="https://www.youtube.com/channel/UCDGYSQC_wSISyNdOMvDh9IA" target="_blank" class="cta-link" style="margin-top: 0;">
+                                    <span>BiTS Radio</span>
+                                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                        <path d="M7 17L17 7M7 7h10v10"/>
+                                    </svg>
+                                </a>
+                                <a href="https://divany.hu/offline/2013/10/25/avantgard_kreaciokba_bujtatna_az_utolso_halandot_a_bits_labo/" target="_blank" class="cta-link" style="margin-top: 0;">
+                                    <span>Dívány Interview</span>
+                                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                        <path d="M7 17L17 7M7 7h10v10"/>
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Flashbird Creative -->
                     <div class="bento-item">
                         <div class="item-content">
-                            <h2 class="item-title">Flashbird Creative</h2>
-                            <p class="item-description">Post-high school motion picture experiment with friends. Learning how to work. Some of them became cinema professionals—I took a different path.</p>
+                            <h2 class="item-title">Flashbird Creative Workshop</h2>
+                            <div class="item-subtitle">The first try...</div>
+                            <p class="item-description">We've experimented with videoblogs, music videos for local Hungarian bands - even started an underground cultural magazine, called Distgrict Zero. Kind of a post-high school motion picture experiment with friends. Learning how to work. Some of them became cinema professionals—I took a different path.</p>
                         </div>
                     </div>
 
@@ -873,11 +987,23 @@
                     <!-- Section Header -->
                     <div class="section-header">Media & Production 🎥</div>
 
+                    <!-- Media Intro -->
+                    <div class="bento-item span-2 border-radius-none" style="background: transparent; border: none; box-shadow: none; padding: 0;">
+                        <div style="padding: 0 0 30px 0;">
+                            <p style="margin: 0; line-height: 1.4; letter-spacing: -0.02em;">
+                                <span style="font-size: 28px; font-weight: 700; color: var(--color-text); display: block; line-height: 1.3;">Field production is chaos -</span>
+                                <span style="font-size: 28px; font-weight: 700; color: var(--color-text); display: block; margin-top: 2px;">every decision <em style="font-style: normal; color: var(--color-accent);">matters</em>, or you lose the story.</span>
+                                <span style="font-size: 18px; font-weight: 400; color: var(--color-text-secondary); display: block; margin-top: 16px; line-height: 1.6; opacity: 0.85;">
+                                    I love that pressure. Briefing journalists on political context, "accidentally" trafficking crews across borders for the perfect shot, making split-second calls in the field. But the most important lesson I learned from Hind Hassan at Vice: it always has to speak about - and for - the people who are affected. The story isn't ours. It's theirs. We're just the conduit.
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+
                     <!-- Media Production -->
                     <div class="bento-item row-span-2">
-                        <div class="image-card" style="height: 100%;">
-                            <img src="photos/fixer.jpg" alt="Media Production">
-                            <div class="caption">Field Production</div>
+                        <div class="image-card" style="height: 100%; background-image: url('photos/fixer.jpg');">
+                            <div class="caption">In the Nickelsdorf temporary refugee camp with Tari Anek from Al Jazeera Balkans</div>
                         </div>
                     </div>
 
@@ -895,7 +1021,7 @@
                             <iframe src="https://www.youtube.com/embed/pz2kDlmHbRQ" title="Vice refugee crisis coverage" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
                         </div>
                         <div style="padding: 20px;">
-                            <p style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; margin: 0;">A Vice piece about the 2015 refugee crisis I worked on as a producer/fixer.</p>
+                            <p style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; margin: 0;">A Vice piece about the 2015 refugee crisis I worked on as a local producer</p>
                         </div>
                     </div>
 
@@ -904,9 +1030,10 @@
                     <div class="bento-item span-2">
                         <div class="item-content">
                             <h2 class="item-title">Sociomapping – A lecture about geopolitics and Hungary's relative position in the world</h2>
+                            <div class="item-subtitle">Educational YouTube series </div>
                             <p class="item-description">Hosted an episodic lecture series exploring geopolitics, economics, and societal trends. Two seasons featuring conversations with leading economists, diplomats, and policy experts.</p>
-                            <a href="https://www.youtube.com/watch?v=qe72GdtJE2Q" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 8px 16px; background: rgba(118, 140, 255, 0.1); border-radius: 8px; font-size: 13px; color: var(--color-accent); text-decoration: none; font-weight: 600; transition: all 0.2s;">
-                                <span>Watch UK episode with economist Zoltan Pogatsa</span>
+                            <a href="https://www.youtube.com/watch?v=_yfPZa0zo9E&list=PLsbp2S0qf404QFrPwXv4NBSx5ALZfBvLO" target="_blank" class="cta-link">
+                                <span>Watch the full series of Sociomapping</span>
                                 <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                                     <path d="M7 17L17 7M7 7h10v10"/>
                                 </svg>
@@ -916,9 +1043,8 @@
 
                     <!-- Sociomapping Photo -->
                     <div class="bento-item">
-                        <div class="image-card">
-                            <img src="photos/sociomapping.jpg" alt="Sociomapping">
-                            <div class="caption">Hosting a Youtube series in Adaptér</div>
+                        <div class="image-card" style="background-image: url('photos/sociomapping.jpg');">
+                            <div class="caption">In Adaptér with economist Zoltan Pogatsa</div>
                         </div>
                     </div>
 
@@ -928,7 +1054,7 @@
 " frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
                         </div>
                         <div style="padding: 20px;">
-                            <p style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; margin: 0;">A Vice piece about the 2015 refugee crisis I worked on as a producer/fixer.</p>
+                            <p style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; margin: 0;">One of my favourite episodes, about the UK</p>
                         </div>
                     </div>
 
@@ -938,26 +1064,62 @@
                     <div class="section-header">Cultural Work 🎭</div>
 
                     <!-- Cultural Work Description -->
-                    <div class="bento-item span-2">
-                        <div class="item-content">
-                            <h2 class="item-title">Building Communities</h2>
-                            <p class="item-description">Led communications for Hungary's independent festival and cultural center. Shaped narratives, built audiences, created lasting impact.</p>
+                    <div class="bento-item span-2 border-radius-none" style="background: transparent; border: none; box-shadow: none; padding: 0;">
+                        <div style="padding: 0 0 30px 0;">
+                            <p style="margin: 0; line-height: 1.4; letter-spacing: -0.02em;">
+                                <span style="font-size: 28px; font-weight: 700; color: var(--color-text); display: block; line-height: 1.3;">Culture isn't decoration -</span>
+                                <span style="font-size: 28px; font-weight: 700; color: var(--color-text); display: block; margin-top: 2px;">it's the <em style="font-style: normal; color: var(--color-accent);">infrastructure</em> of healthy societies.</span>
+                                <span style="font-size: 18px; font-weight: 400; color: var(--color-text-secondary); display: block; margin-top: 16px; line-height: 1.6; opacity: 0.85;">
+                                    Arts, music, open discussions about politics and social issues-these aren't luxuries. They're how we create spaces where people think critically, argue constructively, and stay open-minded. I've spent years building those spaces, believing they matter more than almost anything else for the next generation.
+                                </span>
+                            </p>
                         </div>
                     </div>
 
                     <!-- Bánkitó Festival -->
+                    <div class="bento-item row-span-12">
+                        <div class="image-card" style="background-image: url('photos/bankito.jpg');">
+                            <div class="caption">An iconic Hungarian mid-sized festival</div>
+                        </div>
+                    </div>
+
+                    <!-- Bánkitó Festival Description -->
                     <div class="bento-item">
-                        <div class="image-card">
-                            <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600&h=600&fit=crop&q=80" alt="Bánkitó Festival">
-                            <div class="caption">Bánkitó Festival</div>
+                        <div class="item-content">
+                            <h2 class="item-title">Bánkitó Festival</h2>
+                            <div class="item-subtitle">Director of Communications · 2014-2019</div>
+                            <p class="item-description">Led all communications for one of Hungary's most iconic independent festivals. Marketing campaigns, press relations, international partnerships. Built the buzz, managed the team, connected people across borders.</p>
+                            <hr style="border: none; border-top: 1px solid var(--color-border); margin: 16px 0;">
+                            <p class="item-description" style="margin-bottom: 0;">We always had the most daring and crazy campaigns with Bánkitó—pushing boundaries, breaking conventions, making noise that mattered.</p>
                         </div>
                     </div>
 
                     <!-- Auróra -->
+                    <div class="bento-item row-span-12">
+                        <div class="image-card" style="background-image: url('photos/aurora.jpg');">
+                            <div class="caption">Climate university at Auróra</div>
+                        </div>
+                    </div>
+
+                    <!-- Auróra Description -->
                     <div class="bento-item">
-                        <div class="image-card">
-                            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&h=600&fit=crop&q=80" alt="Auróra">
-                            <div class="caption">Auróra</div>
+                        <div class="item-content">
+                            <h2 class="item-title">Auróra Social Center</h2>
+                            <div class="item-subtitle">Director of Communications · 2014-2017</div>
+                            <p class="item-description">Built communication strategy and brand design from scratch for Budapest's iconic underground cultural center. During the government's NGO crackdown, Auróra faced constant administrative attacks. Our intense media approach and supportive community kept us alive—coverage in NYT, Guardian, BBC, ZDF, Arte TV, Der Spiegel became our shield.</p>
+                            <a href="https://magyarnarancs.hu/lokal/mindent-meg-fogunk-tenni-lukacs-aron-aurora-105042/" target="_blank" class="cta-link">
+                                <span>Read Magyar Narancs Interview</span>
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                    <path d="M7 17L17 7M7 7h10v10"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Budapest Showcase Hub Photo -->
+                    <div class="bento-item">
+                        <div class="image-card" style="background-image: url('photos/bush.jpg');">
+                            <div class="caption">How to enter the Russian music-market?</div>
                         </div>
                     </div>
 
@@ -965,15 +1127,8 @@
                     <div class="bento-item">
                         <div class="item-content">
                             <h2 class="item-title">Budapest Showcase Hub</h2>
-                            <p class="item-description">Community building and event curation</p>
-                        </div>
-                    </div>
-
-                    <!-- Startup Safari Photo -->
-                    <div class="bento-item">
-                        <div class="image-card">
-                            <img src="photos/startup-safari.jpg" alt="Startup Safari">
-                            <div class="caption">Startup Safari</div>
+                            <div class="item-subtitle">Marketing & PR · 2018-2019</div>
+                            <p class="item-description">I had the honor to participate in the Eastern Europe's music industry showcase festival. When did you last hear great Estonian bands? Exactly. But they exist—come to BUSH. Connected V4, Balkans, and Baltics music scenes. Built the brand, ran campaigns, managed communications for 100+ industry professionals across 15 countries.</p>
                         </div>
                     </div>
 
@@ -981,47 +1136,102 @@
                     <div class="bento-item">
                         <div class="item-content">
                             <h2 class="item-title">Startup Safari</h2>
-                            <p class="item-description">Startup ecosystem event organization</p>
+                            <div class="item-subtitle">Communications Manager & Advisor · 2017</div>
+                            <p class="item-description">Ran PPC campaigns, social media strategy, and documentation for Budapest's startup ecosystem event. Worked with partners like Skyscanner, Prezi, Morgan Stanley, Cloudera—building campaigns to pull in attendees from across the region.</p>
                         </div>
                     </div>
-
-                    <!-- Xaver Varnus Tour Photo -->
+                    
+                    <!-- Startup Safari Photo -->
                     <div class="bento-item">
-                        <div class="image-card">
-                            <img src="photos/varnus.jpg" alt="Xaver Varnus Tour">
-                            <div class="caption">Xaver Varnus Tour</div>
+                        <div class="image-card" style="background-image: url('photos/startup-safari.jpg');">
+                            <div class="caption">Presenting at Startup Safari</div>
                         </div>
                     </div>
 
                     <!-- Xaver Varnus Tour Description -->
-                    <div class="bento-item">
+                    <div class="bento-item span-2">
                         <div class="item-content">
-                            <h2 class="item-title">Xaver Varnus Tour</h2>
-                            <p class="item-description">Solo guitarist in an improvisational section of the tour. A small but transformative experience that opened entirely new dimensions in musical thinking and performance.</p>
+                            <h2 class="item-title">Xaver Varnus</h2>
+                            <div class="item-subtitle">Tour Manager & Personal Assistant · 2012-2014</div>
+                            <p class="item-description">Xaver didn't just hire me-he mentored me. As his tour manager and assistant, I organized sold-out concerts, handled logistics, bookings, social media. But more than that, he showed me the professional world of arts and performing artists from the inside. How discipline, passion, and relentless excellence look in practice.</p>
+                            <hr style="border: none; border-top: 1px solid var(--color-border); margin: 16px 0;">
+                            <p class="item-description">He railed me onto a journey I'm still on-connecting culture with people, building experiences that matter.</p>
                         </div>
                     </div>
 
-                    <!-- Insert Project -->
+                    <!-- Xaver Varnus Stage Photo -->
+                    <div class="bento-item span-2 row-span-12">
+                        <div class="image-card" style="background-image: url('photos/xaver-stage.jpg');">
+                            <div class="caption">With Xaver Varnus, Mari Torocsik, Jozsef Barcza-Horvath and Tamas Czirjak on stage</div>
+                        </div>
+                    </div>
+
+                    <!-- Deep Glaze -->
                     <div class="bento-item span-2">
                         <div class="item-content">
-                            <h2 class="item-title">Insert — EU-Funded Creative Platform</h2>
-                            <p class="item-description">While working at Adaptér, led the development of Insert—a massive EU-funded experiment connecting creators, resources, and community initiatives. Platform for events, workshops, skills, spaces, and tools. Building bridges between inspiration and action.</p>
+                            <h2 class="item-title">Deep Glaze</h2>
+                            <p class="item-description">Managed this psych-guitar band through a flash of international career. Showcases across Europe, Russian tour, Moscow Music Week. Brief but intense—the kind of experience that teaches you everything about logistics, ambition, and what it takes to break through.</p>
+                        </div>
+                    </div>
+
+                    <!-- Adaptér -->
+                    <div class="bento-item">
+                        <div class="item-content">
+                            <h2 class="item-title">Adaptér</h2>
+                            <div class="item-subtitle">Business Development Manager</div>
+                            <p class="item-description">Innovative education and cultural center in Budapest. A creative technology knowledge base combining workshops, studios, and community learning. Responsible for sales and in-house product development - building educational programs around sustainability, digital literacy, and urban innovation.</p>
+                        </div>
+                    </div>
+
+                    <!-- Adaptér Video -->
+                    <div class="bento-item" style="overflow: visible;">
+                        <div class="video-card" style="padding-bottom: 56.25%; margin-bottom: 0;">
+                            <iframe src="https://www.youtube.com/embed/c3q8N-hrbjo" title="Adaptér video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+                        </div>
+                        <div style="padding: 20px;">
+                            <p style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; margin: 0;">Adaptér's creative technology knowledge base in action</p>
                         </div>
                     </div>
 
                     <!-- Section Header -->
                     <div class="section-header">Somló Abbey Winery 🍷</div>
 
+                    <!-- Winery Intro -->
+                    <div class="bento-item span-2 border-radius-none" style="background: transparent; border: none; box-shadow: none; padding: 0;">
+                        <div style="padding: 0 0 30px 0;">
+                            <p style="margin: 0; line-height: 1.4; letter-spacing: -0.02em;">
+                                <span style="font-size: 28px; font-weight: 700; color: var(--color-text); display: block; line-height: 1.3;">Somló has always been home -</span>
+                                <span style="font-size: 28px; font-weight: 700; color: var(--color-text); display: block; margin-top: 2px;">just took a <em style="font-style: normal; color: var(--color-accent);">pandemic</em> to bring us back.</span>
+                                <span style="font-size: 18px; font-weight: 400; color: var(--color-text-secondary); display: block; margin-top: 16px; line-height: 1.6; opacity: 0.85;">
+                                    Childhood summers at grandma's, volcanic soil, ancient vines. We always dreamt of leaving the city but never had the courage - until COVID gave us the push. Now we're here as much as possible, working with the family winery, reconnecting with what matters. This is where I escape the daily rush, step back, and see things clearly. Sometimes you need distance to find perspective.
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+
                     <!-- Winery Hero -->
-                    <div class="bento-item span-2">
+                    <div class="bento-item">
                         <div class="item-content">
                             <h2 class="item-title">Family Winery in Somló</h2>
                             <p class="item-description">My brother's winery in one of Hungary's most unique volcanic wine regions. Ancient vineyards, natural winemaking, stories in every bottle. It's where tradition meets innovation, and where I reconnect with what matters.</p>
+                            <a href="https://www.govolcanic.hu/spl/479231/Somloi-Apatsagi-Pince" target="_blank" class="cta-link">
+                                <span>Taste our wines</span>
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                    <path d="M7 17L17 7M7 7h10v10"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Winery Image -->
+                    <div class="bento-item row-span-4">
+                        <div class="image-card" style="background-image: url('photos/winery.jpg');">
+                            <div class="caption">In our family vinyards</div>
                         </div>
                     </div>
 
                     <!-- Substack Link -->
-                    <a href="#" class="bento-item link-item">
+                    <a href="https://somlo.substack.com/" target="_blank" class="bento-item link-item">
                         <div class="link-icon">
                             <svg width="20" height="20" fill="white" viewBox="0 0 24 24">
                                 <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
@@ -1033,110 +1243,28 @@
                         </div>
                     </a>
 
-                    <!-- Winery Image -->
-                    <div class="bento-item">
-                        <div class="image-card">
-                            <img src="photos/winery.jpg" alt="Somló Winery">
-                            <div class="caption">Somló Abbey Winery</div>
-                        </div>
-                    </div>
+                    
+
+    
 
                     <!-- Section Header -->
-                    <div class="section-header">Background 📅</div>
+                    <div class="section-header">On Repeat 🎧</div>
 
-                    <!-- Timeline Overview -->
-                    <div class="bento-item span-2">
-                        <div class="item-content">
-                            <h2 class="item-title">2006 → 2025</h2>
-                            <p class="item-description">Technical support → media production → frontend dev → B2B growth. Public sector → e-commerce → enterprise software. Every role built the foundation for what I do today.</p>
+                    <!-- Spotify Intro -->
+                    <div class="bento-item span-2 border-radius-none" style="background: transparent; border: none; box-shadow: none; padding: 0;">
+                        <div style="padding: 0 0 30px 0;">
+                            <p style="margin: 0; line-height: 1.4; letter-spacing: -0.02em;">
+                                <span style="font-size: 28px; font-weight: 700; color: var(--color-text); display: block; line-height: 1.3;">Ethereal Piano</span>
+                                <span style="font-size: 18px; font-weight: 400; color: var(--color-text-secondary); display: block; margin-top: 16px; line-height: 1.6; opacity: 0.85;">
+                                    For the moments when I need to think clearly. Modern classical piano—Hania Rani, Nils Frahm, and others who understand that silence between notes matters as much as the sound.
+                                </span>
+                            </p>
                         </div>
                     </div>
 
-                    <!-- Timeline -->
-                    <div class="bento-item span-2">
-                        <div class="timeline">
-                            <div class="timeline-item">
-                                <div class="timeline-year">2025</div>
-                                <div class="timeline-content">
-                                    <h3>LogiNet International</h3>
-                                    <p>Sales Marketing Manager</p>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-year">2023</div>
-                                <div class="timeline-content">
-                                    <h3>22.design</h3>
-                                    <p>Chief Sales & Marketing Officer</p>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-year">2021</div>
-                                <div class="timeline-content">
-                                    <h3>Freelance Producer / Fixer</h3>
-                                    <p>NYT, Vice, ZDF, Al Jazeera</p>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-year">2018</div>
-                                <div class="timeline-content">
-                                    <h3>Adaptér</h3>
-                                    <p>Business Development Manager</p>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-year">2015</div>
-                                <div class="timeline-content">
-                                    <h3>Bánkitó Festival</h3>
-                                    <p>Director of Communications & PR</p>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-year">2014</div>
-                                <div class="timeline-content">
-                                    <h3>Auróra Social Center</h3>
-                                    <p>Director of Communications</p>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-year">2013</div>
-                                <div class="timeline-content">
-                                    <h3>Studio Hansa</h3>
-                                    <p>Frontend Developer</p>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-year">2011</div>
-                                <div class="timeline-content">
-                                    <h3>Égboltkép (Osteroo)</h3>
-                                    <p>Co-Founder & CEO</p>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-year">2010</div>
-                                <div class="timeline-content">
-                                    <h3>FUNZine Magazine</h3>
-                                    <p>Co-Founder</p>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-year">2006</div>
-                                <div class="timeline-content">
-                                    <h3>Various Roles</h3>
-                                    <p>Technical Support & Early Career</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Logo Wall - Floating Section -->
-                    <div class="logo-section">
-                        <p class="logo-section-title">Worked with</p>
-                        <div class="logo-wall">
-                            <img src="logos/nyt.svg" alt="New York Times" class="logo-item">
-                            <img src="logos/vice.svg" alt="Vice" class="logo-item">
-                            <img src="logos/aljazeera.svg" alt="Al Jazeera" class="logo-item">
-                            <img src="logos/zdf.svg" alt="ZDF" class="logo-item">
-                        </div>
+                    <!-- Spotify Playlist -->
+                    <div class="bento-item span-2" style="padding: 0; overflow: hidden;">
+                        <iframe style="border-radius: 28px; width: 100%; height: 400px; border: none;" src="https://open.spotify.com/embed/playlist/7dcocpJck6YD0b9aOwV8P0?utm_source=generator" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                     </div>
 
                     <!-- Section Header -->
