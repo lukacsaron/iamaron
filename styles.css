@@ -16,6 +16,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     background: var(--color-bg);
@@ -143,6 +147,106 @@ h1 {
 
 .btn-secondary:hover {
     border-color: var(--color-accent);
+}
+
+/* Scroll Depth Indicator Navigation */
+.scroll-nav {
+    position: fixed;
+    right: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+}
+
+.scroll-nav-track {
+    position: absolute;
+    right: 5px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--color-border);
+    opacity: 0.5;
+}
+
+.scroll-nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.scroll-nav-dot {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    text-decoration: none;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-nav-dot .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--color-text-secondary);
+    opacity: 0.3;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.scroll-nav-dot:hover .dot {
+    opacity: 0.6;
+    transform: scale(1.2);
+}
+
+.scroll-nav-dot.active .dot {
+    background: var(--color-accent);
+    opacity: 1;
+    transform: scale(1.4);
+    box-shadow: 0 0 0 3px rgba(118, 140, 255, 0.2);
+}
+
+/* Tooltip on hover */
+.scroll-nav-dot::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: 24px;
+    background: var(--color-text);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(8px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.scroll-nav-dot::after {
+    content: '';
+    position: absolute;
+    right: 16px;
+    border: 6px solid transparent;
+    border-left-color: var(--color-text);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-nav-dot:hover::before,
+.scroll-nav-dot:hover::after {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .social-proof {
@@ -894,6 +998,10 @@ h1 {
         top: 0;
         padding-right: 0;
     }
+
+    .scroll-nav {
+        right: 16px; /* Closer to edge on tablets */
+    }
 }
 
 @media (max-width: 768px) {
@@ -925,5 +1033,9 @@ h1 {
 
     .image-card {
         height: 180px;
+    }
+
+    .scroll-nav {
+        display: none; /* Hide scroll navigation on mobile */
     }
 }

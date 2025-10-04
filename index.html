@@ -20,25 +20,20 @@
                 <h1>Aron Lukacs</h1>
                 <p class="tagline">Builder, Connector, Storyteller</p>
                 <p class="bio">Sales & marketing across LogiNet and 22.design. But I got here through festivals, media production, and failed startups—not the usual route.</p>
+                <p class="bio">Turns out, briefing war correspondents and selling enterprise AI aren't that different. Both need clarity under pressure.</p>
 
                 <div class="chips">
-                    <span class="chip">Budapest</span>
-                    <span class="chip">B2B</span>
-                    <span class="chip">Media Production</span>
+                    <span class="chip">Critical Thinker</span>
+                    <span class="chip">Digital Ninja</span>
                     <span class="chip">Dot Connector</span>
                 </div>
 
-                <p class="bio">Turns out, briefing war correspondents and selling enterprise AI aren't that different. Both need clarity under pressure.</p>
 
                 <div class="cta-buttons">
                     <a href="#" class="btn btn-primary">Book a call</a>
                     <a href="mailto:contact@example.com" class="btn btn-secondary">Email me</a>
                 </div>
 
-                <div class="social-proof">
-                    <p class="social-proof-title">Worked with</p>
-                    <p class="social-proof-text">Bankito Festival · NYT · Vice · Al Jazeera</p>
-                </div>
             </div>
 
             <!-- Right Bento Grid Section (2/3) -->
@@ -46,7 +41,7 @@
                 <div class="bento-grid">
 
                     <!-- Intro Text -->
-                    <div class="bento-item span-2 section-intro border-radius-none">
+                    <div id="intro" class="bento-item span-2 section-intro border-radius-none">
                         <div class="section-intro-wrapper">
                             <p class="section-intro-text">
                                 <span class="intro-heading">Hey, I'm Aron 👋 — I connect dots between <em class="intro-accent">culture, technology, and business</em> that most people don't see.</span>
@@ -153,7 +148,7 @@
                     </div>
 
                     <!-- Section Header -->
-                    <div class="section-header">My professional focus 🎯</div>
+                    <div id="focus" class="section-header">My professional focus 🎯</div>
 
                     <!-- Professional Focus Intro -->
                     <div class="bento-item span-2 section-intro border-radius-none">
@@ -201,7 +196,7 @@
                     </div>
 
                     <!-- Section Header -->
-                    <div class="section-header">Ventures 🚀</div>
+                    <div id="ventures" class="section-header">Ventures 🚀</div>
 
                     <!-- Ventures Intro -->
                     <div class="bento-item span-2 section-intro border-radius-none">
@@ -304,7 +299,7 @@
                     </div>
 
                     <!-- Section Header -->
-                    <div class="section-header">Media & Production 🎥</div>
+                    <div id="media" class="section-header">Media & Production 🎥</div>
 
                     <!-- Media Intro -->
                     <div class="bento-item span-2 section-intro border-radius-none">
@@ -380,7 +375,7 @@
                     
 
                     <!-- Section Header -->
-                    <div class="section-header">Cultural Work 🎭</div>
+                    <div id="cultural" class="section-header">Cultural Work 🎭</div>
 
                     <!-- Cultural Work Description -->
                     <div class="bento-item span-2 section-intro border-radius-none">
@@ -513,7 +508,7 @@
                     </div>
 
                     <!-- Section Header -->
-                    <div class="section-header">Somló Abbey Winery 🍷</div>
+                    <div id="winery" class="section-header">Somló Abbey Winery 🍷</div>
 
                     <!-- Winery Intro -->
                     <div class="bento-item span-2 section-intro border-radius-none">
@@ -567,7 +562,7 @@
     
 
                     <!-- Section Header -->
-                    <div class="section-header">On Repeat 🎧</div>
+                    <div id="music" class="section-header">On Repeat 🎧</div>
 
                     <!-- Spotify Intro -->
                     <div class="bento-item span-2 section-intro border-radius-none">
@@ -587,7 +582,7 @@
                     </div>
 
                     <!-- Section Header -->
-                    <div class="section-header">Connect ✉️</div>
+                    <div id="connect" class="section-header">Connect ✉️</div>
 
                     <!-- LinkedIn -->
                     <a href="https://www.linkedin.com/in/aaronlukacs" class="bento-item link-item">
@@ -628,5 +623,175 @@
             </div>
         </div>
     </div>
+
+    <!-- Scroll Depth Indicator -->
+    <nav class="scroll-nav" aria-label="Page sections">
+        <div class="scroll-nav-track"></div>
+        <ul class="scroll-nav-list">
+            <li>
+                <a href="#intro" class="scroll-nav-dot" data-tooltip="Current Projects">
+                    <span class="dot"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#focus" class="scroll-nav-dot" data-tooltip="My professional focus">
+                    <span class="dot"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#ventures" class="scroll-nav-dot" data-tooltip="Ventures">
+                    <span class="dot"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#media" class="scroll-nav-dot" data-tooltip="Media & Production">
+                    <span class="dot"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#cultural" class="scroll-nav-dot" data-tooltip="Cultural Work">
+                    <span class="dot"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#winery" class="scroll-nav-dot" data-tooltip="Somló Abbey Winery">
+                    <span class="dot"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#music" class="scroll-nav-dot" data-tooltip="On Repeat">
+                    <span class="dot"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#connect" class="scroll-nav-dot" data-tooltip="Connect">
+                    <span class="dot"></span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <script>
+        // Intersection Observer for scroll navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section-header[id], #intro');
+            const navDots = document.querySelectorAll('.scroll-nav-dot');
+
+            // Create a map of section IDs to nav dots for faster lookup
+            const navDotMap = new Map();
+            navDots.forEach(dot => {
+                const href = dot.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    navDotMap.set(href.substring(1), dot);
+                }
+            });
+
+            // Intersection Observer configuration
+            const observerOptions = {
+                root: null,
+                rootMargin: '-10% 0px -80% 0px', // Tighter range for better accuracy
+                threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+            };
+
+            // Track all intersecting sections
+            const intersectingSections = new Map();
+            let currentActiveId = null;
+
+            const observerCallback = (entries) => {
+                // Update intersecting sections map
+                entries.forEach(entry => {
+                    const id = entry.target.getAttribute('id');
+                    if (entry.isIntersecting) {
+                        intersectingSections.set(id, {
+                            element: entry.target,
+                            ratio: entry.intersectionRatio,
+                            boundingRect: entry.boundingClientRect
+                        });
+                    } else {
+                        intersectingSections.delete(id);
+                    }
+                });
+
+                // Determine which section should be active
+                let newActiveId = null;
+
+                if (intersectingSections.size > 0) {
+                    // Find the section that's closest to the top of the viewport (within our rootMargin)
+                    let closestToTop = null;
+                    let smallestDistance = Infinity;
+
+                    intersectingSections.forEach((data, id) => {
+                        const distance = Math.abs(data.boundingRect.top);
+                        if (distance < smallestDistance) {
+                            smallestDistance = distance;
+                            closestToTop = id;
+                        }
+                    });
+
+                    newActiveId = closestToTop;
+                } else {
+                    // Fallback: If nothing is intersecting, find the section closest to the top of the page
+                    let closestSection = null;
+                    let smallestTopPosition = Infinity;
+
+                    sections.forEach(section => {
+                        const rect = section.getBoundingClientRect();
+                        const topPosition = Math.abs(rect.top);
+                        if (topPosition < smallestTopPosition) {
+                            smallestTopPosition = topPosition;
+                            closestSection = section.getAttribute('id');
+                        }
+                    });
+
+                    newActiveId = closestSection;
+                }
+
+                // Update active state if it changed
+                if (newActiveId && newActiveId !== currentActiveId) {
+                    navDots.forEach(dot => dot.classList.remove('active'));
+                    const activeDot = navDotMap.get(newActiveId);
+                    if (activeDot) {
+                        activeDot.classList.add('active');
+                        currentActiveId = newActiveId;
+                    }
+                }
+            };
+
+            // Create observer
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+            // Observe all sections
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Set first dot as active on page load
+            const firstDot = navDotMap.get('intro');
+            if (firstDot) {
+                firstDot.classList.add('active');
+                currentActiveId = 'intro';
+            }
+
+            // Handle click events for smooth scrolling with offset
+            navDots.forEach(dot => {
+                dot.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+
+                    if (targetSection) {
+                        const offset = 80; // Offset for sticky header consideration
+                        const elementPosition = targetSection.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
