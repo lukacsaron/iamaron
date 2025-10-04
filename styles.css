@@ -27,12 +27,38 @@ body {
     color: var(--color-text);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    position: relative;
+}
+
+/* Particles Background */
+.particles-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+    /* Gradient mask to fade out towards bottom */
+    -webkit-mask-image: linear-gradient(to bottom,
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 0.8) 40%,
+        rgba(0, 0, 0, 0.3) 70%,
+        rgba(0, 0, 0, 0) 100%);
+    mask-image: linear-gradient(to bottom,
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 0.8) 40%,
+        rgba(0, 0, 0, 0.3) 70%,
+        rgba(0, 0, 0, 0) 100%);
 }
 
 .container {
     max-width: 1400px;
     margin: 0 auto;
     padding: 80px 60px;
+    position: relative;
+    z-index: 1;
 }
 
 .layout {
@@ -1054,5 +1080,9 @@ h1 {
 
     .scroll-nav {
         display: none; /* Hide scroll navigation on mobile */
+    }
+
+    .particles-background {
+        display: none; /* Hide particles on mobile for performance */
     }
 }
