@@ -8,6 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+
+    <!-- GSAP for smooth animations -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -791,6 +795,85 @@
                     }
                 });
             });
+
+            // ===== GSAP Scroll Reveal Animation System =====
+
+            // Register ScrollTrigger plugin
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Check for reduced motion preference
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if (!prefersReducedMotion) {
+                // Select all bento items except section intros
+                const revealItems = gsap.utils.toArray('.bento-item:not(.section-intro)');
+
+                // Add class for initial state
+                revealItems.forEach(item => {
+                    item.classList.add('gsap-reveal');
+                });
+
+                // Animate each item with ScrollTrigger
+                revealItems.forEach((item, index) => {
+                    gsap.to(item, {
+                        scrollTrigger: {
+                            trigger: item,
+                            start: 'top 90%', // Start earlier for quicker reveal
+                            toggleActions: 'play none none none', // Only play once
+                            // markers: true, // Uncomment for debugging
+                        },
+                        opacity: 1,
+                        visibility: 'visible',
+                        y: 0,
+                        scale: 1,
+                        duration: 0.5, // Much faster - snappy and dynamic
+                        ease: 'expo.out', // Natural exponential decay
+                        delay: (index % 2) * 0.06, // Faster stagger
+                        // Initial state (from)
+                        startAt: {
+                            y: 30, // Less distance = faster reveal
+                            scale: 0.98, // Very subtle scale
+                            opacity: 0,
+                            visibility: 'hidden'
+                        }
+                    });
+                });
+
+                // Special animation for the map widget (more subtle)
+                const mapWidget = document.querySelector('.map-widget');
+                if (mapWidget) {
+                    const mapBento = mapWidget.closest('.bento-item');
+                    if (mapBento && mapBento.classList.contains('gsap-reveal')) {
+                        // Override the map animation to be more gentle
+                        ScrollTrigger.getById(mapBento)?.kill();
+
+                        gsap.to(mapBento, {
+                            scrollTrigger: {
+                                trigger: mapBento,
+                                start: 'top 90%',
+                                toggleActions: 'play none none none',
+                            },
+                            opacity: 1,
+                            visibility: 'visible',
+                            y: 0,
+                            duration: 0.6,
+                            ease: 'expo.out',
+                            startAt: {
+                                y: 25,
+                                opacity: 0,
+                                visibility: 'hidden'
+                            }
+                        });
+                    }
+                }
+            } else {
+                // For reduced motion, just show everything
+                const revealItems = document.querySelectorAll('.bento-item:not(.section-intro)');
+                revealItems.forEach(item => {
+                    item.style.opacity = '1';
+                    item.style.visibility = 'visible';
+                });
+            }
         });
     </script>
 </body>

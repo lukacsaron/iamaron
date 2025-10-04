@@ -281,6 +281,22 @@ h1 {
     width: 100%;
 }
 
+/* Scroll Reveal Animation System - GSAP Powered */
+/* Initial state for animations - GSAP will handle the rest */
+.gsap-reveal {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* For users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .gsap-reveal {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+    }
+}
+
 .bento-item {
     background: var(--color-card);
     border-radius: 28px;
