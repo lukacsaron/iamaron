@@ -1,13 +1,14 @@
 :root {
-    --color-bg: #FAFAFA;
-    --color-card: #FFFFFF;
-    --color-text: #1A1A1A;
-    --color-text-secondary: #666666;
-    --color-border: rgba(0, 0, 0, 0.06);
-    --color-accent: #768CFF;
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
-    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+    /* Sophisticated Neutral Palette */
+    --color-bg: #FAFAFA;            /* Off-White - clean, professional background */
+    --color-card: #FFFFFF;          /* White - crisp containers */
+    --color-text: #2D3748;          /* Charcoal - strong primary text */
+    --color-text-secondary: #718096; /* Slate Gray - balanced secondary text */
+    --color-border: rgba(45, 55, 72, 0.08); /* Subtle charcoal border */
+    --color-accent: #4A5568;        /* Deep Indigo - sophisticated, professional accent */
+    --shadow-sm: 0 1px 2px rgba(45, 55, 72, 0.04);
+    --shadow-md: 0 4px 16px rgba(45, 55, 72, 0.08);
+    --shadow-lg: 0 8px 32px rgba(45, 55, 72, 0.12);
 }
 
 * {
@@ -97,7 +98,7 @@ h1 {
 
 .chip {
     padding: 6px 12px;
-    background: rgba(118, 140, 255, 0.1);
+    background: rgba(74, 85, 104, 0.1); /* Deep indigo with 10% opacity */
     border-radius: 20px;
     font-size: 12px;
     font-weight: 500;
@@ -135,7 +136,7 @@ h1 {
 }
 
 .btn-primary:hover {
-    background: #5a6fd9;
+    background: #2D3748; /* Darker indigo on hover */
     transform: translateY(-2px);
 }
 
@@ -210,7 +211,7 @@ h1 {
     background: var(--color-accent);
     opacity: 1;
     transform: scale(1.4);
-    box-shadow: 0 0 0 3px rgba(118, 140, 255, 0.2);
+    box-shadow: 0 0 0 3px rgba(74, 85, 104, 0.2); /* Deep indigo glow */
 }
 
 /* Tooltip on hover */
@@ -420,12 +421,12 @@ h1 {
     width: 56px;
     height: 56px;
     border-radius: 16px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #4A5568 0%, #2D3748 100%); /* Deep indigo gradient */
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 4px 12px rgba(74, 85, 104, 0.3);
 }
 
 .link-info h3 {
@@ -503,7 +504,7 @@ h1 {
     gap: 8px;
     margin-top: 16px;
     padding: 8px 12px;
-    background: rgba(118, 140, 255, 0.1);
+    background: rgba(74, 85, 104, 0.1); /* Deep indigo with 10% opacity */
     border-radius: 8px;
     font-size: 13px;
     color: var(--color-accent);
@@ -514,7 +515,7 @@ h1 {
 }
 
 .cta-link:hover {
-    background: rgba(118, 140, 255, 0.15);
+    background: rgba(74, 85, 104, 0.15); /* Deep indigo with 15% opacity */
     transform: translateY(-1px);
 }
 
