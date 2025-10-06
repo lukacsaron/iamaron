@@ -1222,22 +1222,7 @@
         // ===== Intro Page Load Animations =====
         document.addEventListener('DOMContentLoaded', function() {
             // Intro animation timeline
-            const introTimeline = gsap.timeline({
-                defaults: { ease: 'expo.out' },
-                onComplete: function() {
-                    // Add shine effect to gradient words after animation completes
-                    const gradientWords = document.querySelectorAll('.intro-accent.gradient-1a, .intro-accent.gradient-1b, .intro-accent.gradient-1c');
-                    gradientWords.forEach((word, index) => {
-                        setTimeout(() => {
-                            word.classList.add('shine-effect');
-                            // Remove class after animation completes
-                            setTimeout(() => {
-                                word.classList.remove('shine-effect');
-                            }, 1200); // Match the animation duration
-                        }, index * 200); // Stagger the shine effect
-                    });
-                }
-            });
+            const introTimeline = gsap.timeline({ defaults: { ease: 'expo.out' } });
 
             introTimeline
                 // "Hey, I'm Aron 👋" - slide from left
