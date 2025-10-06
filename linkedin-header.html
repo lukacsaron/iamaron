@@ -30,13 +30,10 @@
             -moz-osx-font-smoothing: grayscale;
             position: relative;
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .particles-background {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -47,10 +44,13 @@
         }
 
         .content {
-            position: relative;
+            position: absolute;
             z-index: 1;
-            max-width: 1400px;
-            padding: 60px 80px;
+            left: 450px;
+            top: 50%;
+            transform: translateY(-50%);
+            max-width: 1050px;
+            padding: 40px 60px 40px 0;
         }
 
         .section-intro-text {
@@ -68,9 +68,9 @@
         }
 
         .intro-heading-hero {
-            font-size: 52px;
+            font-size: 48px;
             font-weight: 800;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .wave {
@@ -90,12 +90,12 @@
         }
 
         .intro-heading-secondary {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 600;
-            margin-left: 40px;
+            margin-left: 30px;
             display: block;
             margin-top: 4px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .intro-accent {
@@ -125,16 +125,16 @@
         }
 
         .intro-subheading-large {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 500;
             color: var(--color-text-secondary);
             display: block;
-            margin-top: 12px;
+            margin-top: 10px;
             line-height: 1.5;
         }
 
         .intro-subheading-large.compact {
-            margin-top: 6px;
+            margin-top: 5px;
         }
 
         .accent-strong {
