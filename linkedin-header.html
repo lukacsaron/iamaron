@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aron Lukacs - LinkedIn Header</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #FAFAFA;
+            --color-text: #2D3748;
+            --color-text-secondary: #718096;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1584px;
+            height: 396px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .particles-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.5;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            padding: 60px 80px;
+        }
+
+        .section-intro-text {
+            margin: 0;
+            line-height: 1.4;
+            letter-spacing: -0.02em;
+        }
+
+        .intro-heading {
+            font-size: 34px;
+            font-weight: 700;
+            color: var(--color-text);
+            display: block;
+            line-height: 1.3;
+        }
+
+        .intro-heading-hero {
+            font-size: 52px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .wave {
+            display: inline-block;
+            animation: wave 1.5s ease-in-out infinite;
+            transform-origin: 70% 70%;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            10%, 30% { transform: rotate(14deg); }
+            20% { transform: rotate(-8deg); }
+            40% { transform: rotate(14deg); }
+            50% { transform: rotate(-4deg); }
+            60% { transform: rotate(10deg); }
+            70%, 100% { transform: rotate(0deg); }
+        }
+
+        .intro-heading-secondary {
+            font-size: 26px;
+            font-weight: 600;
+            margin-left: 40px;
+            display: block;
+            margin-top: 4px;
+            margin-bottom: 10px;
+        }
+
+        .intro-accent {
+            font-style: normal;
+            font-weight: 700;
+        }
+
+        .gradient-1a {
+            background-image: linear-gradient(135deg, #667EEA, #764BA2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-1b {
+            background-image: linear-gradient(135deg, #38A89D, #4FC3F7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-1c {
+            background-image: linear-gradient(135deg, #F093FB, #F5576C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .intro-subheading-large {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+            display: block;
+            margin-top: 12px;
+            line-height: 1.5;
+        }
+
+        .intro-subheading-large.compact {
+            margin-top: 6px;
+        }
+
+        .accent-strong {
+            color: #4A5568;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="particles-canvas" class="particles-background"></canvas>
+
+    <div class="content">
+        <p class="section-intro-text">
+            <span class="intro-heading intro-heading-hero">Hey, I'm Aron <span class="wave">👋</span></span>
+            <span class="intro-heading intro-heading-secondary">— I connect dots between <em class="intro-accent gradient-1a">culture</em>, <em class="intro-accent gradient-1b">technology</em>, and <em class="intro-accent gradient-1c">business</em> that most people don't see.</span>
+            <span class="intro-subheading-large">
+                These days, I channel that perspective into <strong class="accent-strong">LogiNet</strong>, where we build AI solutions that actually work, not just impress in pitch decks.
+            </span>
+            <span class="intro-subheading-large compact">
+                And <strong class="accent-strong">22.design</strong>, where we create websites & no-code apps built to convert, not just to showcase 🎯
+            </span>
+        </p>
+    </div>
+
+    <script>
+        (function() {
+            const canvas = document.getElementById('particles-canvas');
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return;
+
+            let particles = [];
+            let mouse = { x: 0, y: 0 };
+            let animationFrameId;
+
+            // Particle colors - vibrant and colorful
+            const colors = [
+                'hsl(210, 80%, 60%)',   // vibrant blue
+                'hsl(280, 70%, 65%)',   // purple
+                'hsl(340, 75%, 65%)',   // pink
+                'hsl(180, 70%, 55%)',   // cyan
+                'hsl(250, 75%, 60%)',   // indigo
+                'hsl(200, 80%, 58%)',   // sky blue
+            ];
+
+            // Set canvas size
+            function resizeCanvas() {
+                canvas.width = 1584;
+                canvas.height = 396;
+                initParticles();
+            }
+
+            // Initialize particles
+            function initParticles() {
+                const particleCount = Math.floor((canvas.width * canvas.height) / 15000);
+                particles = [];
+
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        vx: (Math.random() - 0.5) * 0.5,
+                        vy: (Math.random() - 0.5) * 0.5,
+                        color: colors[Math.floor(Math.random() * colors.length)],
+                        radius: Math.random() * 2 + 1,
+                    });
+                }
+            }
+
+            // Mouse move handler
+            function handleMouseMove(e) {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+            }
+
+            // Animation loop
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Update and draw particles
+                particles.forEach((particle, i) => {
+                    // Move particle
+                    particle.x += particle.vx;
+                    particle.y += particle.vy;
+
+                    // Bounce off edges
+                    if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
+                    if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
+
+                    // Subtle mouse interaction
+                    const dx = mouse.x - particle.x;
+                    const dy = mouse.y - particle.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 150) {
+                        const force = (150 - dist) / 150;
+                        particle.x -= (dx / dist) * force * 0.5;
+                        particle.y -= (dy / dist) * force * 0.5;
+                    }
+
+                    // Draw particle
+                    ctx.beginPath();
+                    ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = particle.color;
+                    ctx.fill();
+
+                    // Draw connections
+                    particles.slice(i + 1).forEach((otherParticle) => {
+                        const dx = particle.x - otherParticle.x;
+                        const dy = particle.y - otherParticle.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < 150) {
+                            ctx.beginPath();
+                            ctx.moveTo(particle.x, particle.y);
+                            ctx.lineTo(otherParticle.x, otherParticle.y);
+
+                            // Opacity based on distance
+                            const opacity = (1 - distance / 150) * 0.3;
+
+                            // Create gradient for line
+                            const gradient = ctx.createLinearGradient(
+                                particle.x,
+                                particle.y,
+                                otherParticle.x,
+                                otherParticle.y
+                            );
+
+                            const particleColorWithOpacity = particle.color.replace(')', `, ${opacity})`).replace('hsl', 'hsla');
+                            const otherColorWithOpacity = otherParticle.color.replace(')', `, ${opacity})`).replace('hsl', 'hsla');
+
+                            gradient.addColorStop(0, particleColorWithOpacity);
+                            gradient.addColorStop(1, otherColorWithOpacity);
+
+                            ctx.strokeStyle = gradient;
+                            ctx.lineWidth = 0.5;
+                            ctx.stroke();
+                        }
+                    });
+                });
+
+                animationFrameId = requestAnimationFrame(animate);
+            }
+
+            // Initialize
+            resizeCanvas();
+            window.addEventListener('mousemove', handleMouseMove);
+            animate();
+        })();
+    </script>
+</body>
+</html>
