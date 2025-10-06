@@ -231,11 +231,12 @@ h1 {
     text-decoration: none;
     text-align: center;
     transition: all 0.2s;
-    border: none;
+    border: 1px solid transparent;
     cursor: pointer;
     display: block;
     width: 100%;
     font-family: inherit;
+    box-sizing: border-box;
 }
 
 .border-radius-none {
