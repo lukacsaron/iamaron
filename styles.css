@@ -654,6 +654,267 @@ h1 {
     line-height: 1.6;
 }
 
+/* --- Achievement Ticker Styling --- */
+
+.achievement-ticker {
+    position: relative;
+    padding-top: 12px;
+    margin-top: 16px;
+    border-top: 1px solid rgba(45, 55, 72, 0.1);
+    width: 100%;
+    height: 5em;
+    color: rgba(45, 55, 72, 0.7);
+}
+
+.ticker-viewport {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.ticker-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    opacity: 0;
+    padding-left: 20px;
+    padding-right: 8px;
+}
+
+.ticker-item::before {
+    content: '›';
+    position: absolute;
+    left: 4px;
+    top: 0;
+    font-weight: 700;
+    color: rgba(45, 55, 72, 0.5);
+}
+
+/* --- Endorsement Card Stack Styling --- */
+
+.bento-item:has(.endorsement-stack-container) {
+    overflow: visible;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.endorsement-stack-container {
+    position: relative;
+}
+
+.endorsement-stack {
+    position: relative;
+    width: 100%;
+    min-height: 300px;
+}
+
+.endorsement-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 36px 32px;
+    box-sizing: border-box;
+    background: var(--color-card);
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(45, 55, 72, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
+    cursor: grab;
+    opacity: 0;
+}
+
+.endorsement-card:active {
+    cursor: grabbing;
+}
+
+.endorsement-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-accent);
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.endorsement-text {
+    font-size: 19px;
+    line-height: 1.65;
+    color: var(--color-text);
+    margin: 0 0 28px 0;
+    font-weight: 400;
+}
+
+.endorsement-text .highlight-gradient {
+    font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+    font-weight: 700;
+    background-image: linear-gradient(135deg, #667EEA, #764BA2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.endorsement-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+    border-top: 1px solid rgba(74, 85, 104, 0.1);
+}
+
+.author-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.author-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.author-position {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+}
+
+.author-name-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.linkedin-link {
+    display: inline-flex;
+    align-items: center;
+    color: #0A66C2;
+    transition: all 0.2s ease;
+    opacity: 0.8;
+}
+
+.linkedin-link:hover {
+    opacity: 1;
+    transform: translateY(-1px);
+}
+
+.linkedin-link svg {
+    transition: transform 0.2s ease;
+}
+
+.linkedin-link:hover svg {
+    transform: scale(1.1);
+}
+
+.endorsement-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: rgba(102, 126, 234, 0.08);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #667EEA;
+}
+
+.endorsement-badge svg {
+    color: #667EEA;
+}
+
+/* Floating Navigation for Endorsements */
+
+.endorsement-nav-float {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-top: -12px;
+    margin-bottom: 24px;
+    padding: 16px 24px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 50px;
+    border: 1px solid rgba(74, 85, 104, 0.08);
+    box-shadow: 0 4px 16px rgba(45, 55, 72, 0.06);
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.endorsement-nav-arrow {
+    background: transparent;
+    border: none;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 50%;
+}
+
+.endorsement-nav-arrow:hover {
+    background: rgba(74, 85, 104, 0.08);
+    transform: scale(1.1);
+}
+
+.endorsement-nav-arrow:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.endorsement-nav-arrow svg {
+    color: var(--color-accent);
+    transition: color 0.2s ease;
+}
+
+.endorsement-nav-arrow:hover svg {
+    color: var(--color-text);
+}
+
+.endorsement-nav-dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.endorsement-nav-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-border);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.endorsement-nav-dot:hover {
+    background: var(--color-text-secondary);
+    transform: scale(1.2);
+}
+
+.endorsement-nav-dot.active {
+    background: var(--color-accent);
+    width: 24px;
+    border-radius: 4px;
+}
+
 .item-list {
     list-style: none;
     margin: 8px 0 0 0;
@@ -1518,6 +1779,32 @@ h1 {
 
     .image-card {
         height: 180px;
+    }
+
+
+    .endorsement-card {
+        padding: 28px 24px;
+    }
+
+    .endorsement-text {
+        font-size: 17px;
+    }
+
+    .endorsement-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .endorsement-nav-float {
+        padding: 12px 20px;
+        gap: 20px;
+        margin-top: -8px;
+    }
+
+    .endorsement-nav-arrow {
+        width: 32px;
+        height: 32px;
     }
 
     .scroll-nav {
