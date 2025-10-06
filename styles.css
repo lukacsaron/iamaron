@@ -280,7 +280,6 @@ h1 {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 4px;
     border-radius: 6px;
     transition: all 0.2s;
     cursor: pointer;
@@ -288,6 +287,8 @@ h1 {
 
 .copy-email-icon:hover {
     background: rgba(74, 85, 104, 0.1);
+    padding: 4px;
+    margin: -4px;
     transform: scale(1.1);
 }
 
