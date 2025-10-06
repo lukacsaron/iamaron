@@ -220,7 +220,7 @@
 
                     <!-- Location Map Widget -->
                     <div class="bento-item">
-                        <div class="map-widget">
+                        <div class="map-widget cursor-hungary">
                             <!-- Google Maps iframe centered on Budapest -->
                             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d9000000!2d19.0402!3d47.4979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1234567890!5m2!1sen!2s" class="map-iframe-filter" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
@@ -264,7 +264,7 @@
 
                     <!-- Section Header -->
                     <!-- LogiNet & 22 Portrait Photo -->
-                    <div class="bento-item row-span-2">
+                    <div class="bento-item row-span-2 cursor-nerd">
                         <div class="image-card image-full-height bg-loginet-22"></div>
                         <div class="caption">UX workshop on Service Design Day</div>
                     </div>
@@ -321,7 +321,7 @@
                     </div>
 
                     <!-- Strategic Sales & Marketing -->
-                    <div class="bento-item">
+                    <div class="bento-item cursor-chart">
                         <div class="item-content">
                             <h2 class="item-title">Strategic Sales & Marketing</h2>
                             <p class="item-description">Turning complex B2B offers into clear value. Building funnels that convert, positioning that sticks, and go-to-market strategies that align teams from day one.</p>
@@ -337,7 +337,7 @@
                     </div>
 
                     <!-- In-house AI-enablement -->
-                    <div class="bento-item">
+                    <div class="bento-item cursor-robot">
                         <div class="item-content">
                             <h2 class="item-title">In-house AI-enablement</h2>
                             <p class="item-description">Helping teams adopt AI without the hype. Practical implementation, workflow integration, and building internal capabilities that create real competitive advantages.</p>
@@ -353,7 +353,7 @@
                     </div>
 
                     <!-- From Idea to Prototype -->
-                    <div class="bento-item">
+                    <div class="bento-item cursor-bulb">
                         <div class="item-content">
                             <h2 class="item-title">From Idea to Prototype</h2>
                             <p class="item-description">Taking concepts from napkin sketch to working prototype. Rapid validation, lean builds, and strategic iteration that saves time and money.</p>
@@ -369,7 +369,7 @@
                     </div>
 
                     <!-- Business Development -->
-                    <div class="bento-item">
+                    <div class="bento-item cursor-climber">
                         <div class="item-content">
                             <h2 class="item-title">Business Development</h2>
                             <p class="item-description">Reading markets, spotting gaps, moving fast. Polishing offers until they click, pivoting when data demands it, and entering territories others overlook. Pattern recognition meets execution.</p>
@@ -545,7 +545,7 @@
                     </div>
 
                     <!-- Shark Tank Photo -->
-                    <div class="bento-item row-span-12 span-2">
+                    <div class="bento-item row-span-12 span-2 cursor-shark">
                         <div class="image-card bg-sharktank">
                             <div class="caption">The Shark Tank studio in RTL </div>
                         </div>
@@ -660,7 +660,7 @@
                     </div>
 
                     <!-- Sociomapping Photo -->
-                    <div class="bento-item">
+                    <div class="bento-item cursor-tv">
                         <div class="image-card bg-sociomapping">
                             <div class="caption">In Adaptér with economist Zoltan Pogatsa</div>
                         </div>
@@ -695,7 +695,7 @@
                     </div>
 
                     <!-- Bánkitó Festival -->
-                    <div class="bento-item row-span-12">
+                    <div class="bento-item row-span-12 cursor-heart">
                         <div class="image-card bg-bankito">
                             <div class="caption">Bánkitó's beloved lake-stage</div>
                         </div>
@@ -1230,11 +1230,11 @@
                     gradientWords.forEach((word, index) => {
                         setTimeout(() => {
                             word.classList.add('shine-effect');
-                            // Remove class after animation completes to reset for potential re-use
+                            // Remove class after animation completes
                             setTimeout(() => {
                                 word.classList.remove('shine-effect');
-                            }, 800);
-                        }, index * 150); // Stagger the shine effect
+                            }, 1200); // Match the animation duration
+                        }, index * 200); // Stagger the shine effect
                     });
                 }
             });

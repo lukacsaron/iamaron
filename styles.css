@@ -1490,7 +1490,7 @@ h1 {
 /* Shine effect for gradient text */
 @keyframes shine {
     0% {
-        background-position: -200% center;
+        background-position: -100% center;
     }
     100% {
         background-position: 200% center;
@@ -1499,41 +1499,56 @@ h1 {
 
 .intro-accent.shine-effect.gradient-1a {
     background-image: linear-gradient(
-        135deg,
+        90deg,
         #667EEA 0%,
-        #667EEA 35%,
-        #ffffff 50%,
-        #764BA2 65%,
+        #667EEA 30%,
+        #667EEA 40%,
+        rgba(255, 255, 255, 0.4) 50%,
+        #764BA2 60%,
+        #764BA2 70%,
         #764BA2 100%
     );
     background-size: 200% auto;
-    animation: shine 0.8s ease-in-out;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shine 1.2s ease-out forwards;
 }
 
 .intro-accent.shine-effect.gradient-1b {
     background-image: linear-gradient(
-        135deg,
+        90deg,
         #38A89D 0%,
-        #38A89D 35%,
-        #ffffff 50%,
-        #4FC3F7 65%,
+        #38A89D 30%,
+        #38A89D 40%,
+        rgba(255, 255, 255, 0.4) 50%,
+        #4FC3F7 60%,
+        #4FC3F7 70%,
         #4FC3F7 100%
     );
     background-size: 200% auto;
-    animation: shine 0.8s ease-in-out;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shine 1.2s ease-out forwards;
 }
 
 .intro-accent.shine-effect.gradient-1c {
     background-image: linear-gradient(
-        135deg,
+        90deg,
         #F093FB 0%,
-        #F093FB 35%,
-        #ffffff 50%,
-        #F5576C 65%,
+        #F093FB 30%,
+        #F093FB 40%,
+        rgba(255, 255, 255, 0.4) 50%,
+        #F5576C 60%,
+        #F5576C 70%,
         #F5576C 100%
     );
     background-size: 200% auto;
-    animation: shine 0.8s ease-in-out;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shine 1.2s ease-out forwards;
 }
 
 /* Gradient 2: Unexpected Pop with Teal (hard part) */
@@ -1868,4 +1883,41 @@ h1 {
     .particles-background {
         display: none; /* Hide particles on mobile for performance */
     }
+}
+
+/* Custom emoji cursors */
+.cursor-hungary {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><text y="24" font-size="24">🇭🇺</text></svg>') 16 16, auto;
+}
+
+.cursor-nerd {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><text y="24" font-size="24">🤓</text></svg>') 16 16, auto;
+}
+
+.cursor-chart {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><text y="24" font-size="24">📈</text></svg>') 16 16, auto;
+}
+
+.cursor-robot {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><text y="24" font-size="24">🤖</text></svg>') 16 16, auto;
+}
+
+.cursor-bulb {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><text y="24" font-size="24">💡</text></svg>') 16 16, auto;
+}
+
+.cursor-climber {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><text y="24" font-size="24">🧗🏻‍♂️</text></svg>') 16 16, auto;
+}
+
+.cursor-shark {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><text y="24" font-size="24">🦈</text></svg>') 16 16, auto;
+}
+
+.cursor-tv {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><text y="24" font-size="24">📺</text></svg>') 16 16, auto;
+}
+
+.cursor-heart {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><text y="24" font-size="24">❤️</text></svg>') 16 16, auto;
 }
