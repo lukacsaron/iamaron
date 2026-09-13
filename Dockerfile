@@ -2,7 +2,13 @@ FROM nginx:alpine
 
 # Copy static files to nginx html directory
 COPY index.html /usr/share/nginx/html/
+COPY things.html /usr/share/nginx/html/
+COPY barents-spektakel.html /usr/share/nginx/html/
+COPY barents-spektakel.hu.html /usr/share/nginx/html/
 COPY styles.css /usr/share/nginx/html/
+COPY things.css /usr/share/nginx/html/
+COPY article.css /usr/share/nginx/html/
+COPY article.js /usr/share/nginx/html/
 COPY aron.jpg /usr/share/nginx/html/
 COPY aron.mp4 /usr/share/nginx/html/
 COPY opengraph.png /usr/share/nginx/html/

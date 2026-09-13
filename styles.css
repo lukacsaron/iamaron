@@ -268,6 +268,18 @@ h1 {
     border-color: var(--color-accent);
 }
 
+/* GitHub button carries a mark, so it centres its contents as a row */
+.btn-github {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-github svg {
+    flex: none;
+}
+
 .btn-email {
     display: flex;
     align-items: center;
