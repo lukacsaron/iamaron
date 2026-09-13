@@ -1869,3 +1869,115 @@ h1 {
 .cursor-heart {
     cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><text y="24" font-size="24">❤️</text></svg>') 16 16, auto;
 }
+
+/* ===== Link to the projects index ===================================== */
+
+/* The last nav dot leaves the page, so it sits below a divider and reads
+   as an outbound mark rather than another section on this one. */
+.scroll-nav-break {
+    margin-top: 8px;
+    padding-top: 16px;
+    position: relative;
+}
+
+.scroll-nav-break::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 1px;
+    width: 9px;
+    height: 1px;
+    background: var(--color-border);
+}
+
+.scroll-nav-dot-external .dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 3px;
+    background: var(--color-accent);
+    opacity: 0.45;
+}
+
+.scroll-nav-dot-external:hover .dot {
+    opacity: 1;
+    transform: scale(1.15);
+}
+
+/* Persistent corner button. The scroll rail is pinned to the middle of the
+   viewport on the right, so this sits along the bottom edge, clear of it. */
+.things-fab {
+    position: fixed;
+    right: 28px;
+    bottom: 26px;
+    z-index: 101;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: 14px;
+    background: var(--color-accent);
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 6px 24px rgba(45, 55, 72, 0.28);
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+                background-color 0.2s;
+}
+
+.things-fab:hover {
+    background: #2D3748;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(45, 55, 72, 0.34);
+}
+
+.things-fab-mark {
+    flex: none;
+}
+
+.things-fab-count {
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 4px 7px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.18);
+    font-variant-numeric: tabular-nums;
+}
+
+/* No entrance animation: this is the most visible route to the projects
+   index, so it must be painted and clickable on first frame rather than
+   waiting on a keyframe that may never run. */
+@media (prefers-reduced-motion: reduce) {
+    .things-fab,
+    .things-fab:hover {
+        transition: background-color 0.2s;
+        transform: none;
+    }
+}
+
+/* On narrow screens the scroll rail is hidden, so the button keeps the
+   corner to itself. Label is dropped below 420px to stay out of the way. */
+@media (max-width: 768px) {
+    .things-fab {
+        right: 16px;
+        bottom: 16px;
+        padding: 11px 14px;
+        font-size: 13px;
+    }
+}
+
+/* Drop the count, never the label: a floating mark and a bare number
+   tell a first-time visitor nothing about where the button goes. */
+@media (max-width: 420px) {
+    .things-fab-count {
+        display: none;
+    }
+
+    .things-fab {
+        gap: 8px;
+        border-radius: 12px;
+        padding: 11px 13px;
+    }
+}
