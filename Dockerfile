@@ -8,6 +8,7 @@ COPY aron.mp4 /usr/share/nginx/html/
 COPY opengraph.png /usr/share/nginx/html/
 COPY photos /usr/share/nginx/html/photos
 COPY logos /usr/share/nginx/html/logos
+COPY .well-known /usr/share/nginx/html/.well-known
 
 # Expose port 80
 EXPOSE 80
