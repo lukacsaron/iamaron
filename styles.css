@@ -1932,10 +1932,6 @@ h1 {
     box-shadow: 0 10px 30px rgba(45, 55, 72, 0.34);
 }
 
-.things-fab-mark {
-    flex: none;
-}
-
 .things-fab-count {
     font-size: 12px;
     font-weight: 700;
