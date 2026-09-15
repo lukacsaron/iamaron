@@ -5,6 +5,7 @@ COPY index.html /usr/share/nginx/html/
 COPY things.html /usr/share/nginx/html/
 COPY barents-spektakel.html /usr/share/nginx/html/
 COPY barents-spektakel.hu.html /usr/share/nginx/html/
+COPY minner-ux-tippek.html /usr/share/nginx/html/
 COPY styles.css /usr/share/nginx/html/
 COPY things.css /usr/share/nginx/html/
 COPY article.css /usr/share/nginx/html/

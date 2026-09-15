@@ -618,3 +618,14 @@ a:focus-visible {
 .entry-preview.is-narrow .preview-frame {
     max-width: 360px;
 }
+
+/* A display banner is 728x90 or 300x250 — real ad sizes, not page-shaped.
+   Let it keep its own proportions and sit on the card ground. */
+.entry-preview.is-banner img {
+    aspect-ratio: auto;
+    object-fit: contain;
+}
+
+.entry-preview.is-banner .preview-frame {
+    background: var(--color-card);
+}

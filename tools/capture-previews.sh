@@ -35,6 +35,10 @@ bankito-animation|https://lukacsaron.github.io/bankito22-animation/
 spellbook|https://spellbook.app.jazzrabbit.eu
 banding|https://banding.app.jazzrabbit.eu
 kaleidoscope|https://kaleidoscope.app.jazzrabbit.eu
+zuglo|https://zuglo.app.jazzrabbit.eu
+szervilisbingo|https://szervilisbingo.app.jazzrabbit.eu
+piano|https://piano.app.jazzrabbit.eu
+lesarrail|https://lesarrail.com
 '
 
 mkdir -p "$OUT" .cache/shots
