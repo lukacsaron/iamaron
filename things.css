@@ -621,8 +621,11 @@ a:focus-visible {
 
 /* A display banner is 728x90 or 300x250 — real ad sizes, not page-shaped.
    Let it keep its own proportions and sit on the card ground. */
+/* An explicit ratio, not auto: with auto the box has no height until the
+   image decodes, the lazy loader never sees it intersect the viewport, and
+   it therefore never decodes. Reserving the height breaks that deadlock. */
 .entry-preview.is-banner img {
-    aspect-ratio: auto;
+    aspect-ratio: 1448 / 176;
     object-fit: contain;
 }
 
