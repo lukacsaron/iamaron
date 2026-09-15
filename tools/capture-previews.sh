@@ -34,6 +34,7 @@ telegramtometatrader|https://telegramtometatrader.com
 bankito-animation|https://lukacsaron.github.io/bankito22-animation/
 spellbook|https://spellbook.app.jazzrabbit.eu
 banding|https://banding.app.jazzrabbit.eu
+kaleidoscope|https://kaleidoscope.app.jazzrabbit.eu
 '
 
 mkdir -p "$OUT" .cache/shots
