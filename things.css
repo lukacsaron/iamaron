@@ -612,3 +612,9 @@ a:focus-visible {
         height: 50px;
     }
 }
+
+/* An extension popup is 360px wide in real life; blowing it up to the width
+   of the column would be a lie about its size and blurry besides. */
+.entry-preview.is-narrow .preview-frame {
+    max-width: 360px;
+}
