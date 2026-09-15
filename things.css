@@ -449,3 +449,166 @@ a:focus-visible {
         margin-top: 3px;
     }
 }
+
+/* --- Entry previews ---
+   Three frames, because the frame itself says what kind of thing you are
+   looking at. A website sits in browser chrome carrying its real domain; a
+   video gets a play badge and loads its embed only when clicked; everything
+   else — photographs, a rendered banner, a designed tile — gets a plain
+   soft frame.
+
+   The chrome is drawn here rather than baked into the capture, so the domain
+   stays selectable text and a re-shot screenshot drops straight in. */
+
+.entry-preview {
+    margin: 22px 0 0;
+}
+
+.preview-frame {
+    position: relative;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--color-card);
+    box-shadow: 0 10px 30px rgba(45, 55, 72, 0.07);
+}
+
+.entry-preview img {
+    display: block;
+    width: 100%;
+    height: auto;
+    /* Holds the row's height before the image decodes, so nothing jumps */
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top center;
+    background: rgba(74, 85, 104, 0.05);
+}
+
+.entry-preview a {
+    display: block;
+    text-decoration: none;
+}
+
+/* Site frame */
+
+.preview-chrome {
+    display: flex;
+    align-items: center;
+    padding: 9px 13px;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.01em;
+}
+
+/* One element, three dots — no extra markup in every entry */
+.preview-dots {
+    flex: none;
+    width: 9px;
+    height: 9px;
+    margin-right: 40px;
+    border-radius: 50%;
+    background: rgba(74, 85, 104, 0.2);
+    box-shadow: 15px 0 0 rgba(74, 85, 104, 0.2),
+                30px 0 0 rgba(74, 85, 104, 0.2);
+}
+
+.entry-preview.is-site a:hover .preview-frame {
+    box-shadow: 0 14px 38px rgba(45, 55, 72, 0.13);
+}
+
+.entry-preview.is-site img {
+    aspect-ratio: 16 / 9.4;
+}
+
+/* Video frame — poster until asked for */
+
+.entry-preview.is-video .preview-frame {
+    cursor: pointer;
+}
+
+.entry-preview.is-video img {
+    aspect-ratio: 16 / 9;
+    object-position: center;
+}
+
+.preview-play {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    width: 100%;
+    padding: 0;
+    background: rgba(26, 32, 44, 0.16);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.preview-play:hover {
+    background: rgba(26, 32, 44, 0.06);
+}
+
+.preview-play span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 6px 20px rgba(26, 32, 44, 0.25);
+    transition: transform 0.2s;
+}
+
+.preview-play:hover span {
+    transform: scale(1.07);
+}
+
+.preview-play svg {
+    margin-left: 3px;
+    color: var(--color-accent);
+}
+
+.entry-preview iframe {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+}
+
+/* Photographs and rendered artifacts keep their own proportions — a wide
+   panorama of a stage should not be cropped into a website-shaped box. */
+.entry-preview.is-flat img {
+    aspect-ratio: auto;
+    object-fit: contain;
+}
+
+.entry-preview figcaption {
+    margin-top: 9px;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--color-text-secondary);
+}
+
+@media (max-width: 680px) {
+    .entry-preview {
+        margin-top: 18px;
+    }
+
+    .preview-frame {
+        border-radius: 10px;
+    }
+
+    .preview-dots {
+        margin-right: 32px;
+    }
+
+    .preview-play span {
+        width: 50px;
+        height: 50px;
+    }
+}
