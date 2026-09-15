@@ -626,6 +626,13 @@ a:focus-visible {
     object-fit: contain;
 }
 
+/* These creatives are mostly white. On a white page they read as nothing,
+   so the frame becomes a slot they visibly sit inside. */
 .entry-preview.is-banner .preview-frame {
-    background: var(--color-card);
+    background: rgba(74, 85, 104, 0.07);
+    padding: 20px;
+}
+
+.entry-preview.is-banner img {
+    box-shadow: 0 1px 4px rgba(45, 55, 72, 0.14);
 }
