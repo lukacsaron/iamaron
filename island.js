@@ -25,8 +25,7 @@
                     title: 'Az AI angolul fogalmaz – akkor is, ha magyarul promptolod',
                     lang: 'hu',
                     meta: 'New · 2026 · HU · 5 min',
-                    href: 'ai-magyarul.html',
-                    cover: '—'
+                    href: 'ai-magyarul.html'
                 },
                 {
                     title: 'We went to the coldest festival in the world',
@@ -88,10 +87,9 @@
         return '<div class="island-kicker">' + d.label + '</div>' +
             '<div class="island-reads">' +
                 d.mine.map(function (m) {
-                    var thumb = m.cover
-                        ? '<span class="island-read-cover" aria-hidden="true">' + m.cover + '</span>'
-                        : picture(m.img, 64, 44);
-                    return '<a class="island-read" href="' + m.href + '">' + thumb +
+                    // A piece without a photograph gets no thumbnail, not a stand-in
+                    return '<a class="island-read' + (m.img ? '' : ' is-text') + '" href="' + m.href + '">' +
+                        (m.img ? picture(m.img, 64, 44) : '') +
                         '<span><strong' + (m.lang ? ' lang="' + m.lang + '"' : '') + '>' + m.title + '</strong>' +
                         '<small>' + m.meta + '</small></span></a>';
                 }).join('') +
