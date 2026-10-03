@@ -139,6 +139,30 @@
     margin: 52px 0 22px;
 }
 
+.article-body > ul {
+    margin: 0 0 30px;
+    padding-left: 1.3em;
+}
+
+.article-body > ul li {
+    margin-bottom: 12px;
+    padding-left: 0.3em;
+}
+
+.article-body > ul li::marker {
+    color: var(--color-accent);
+}
+
+/* File and folder names */
+.article-body code {
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 0.84em;
+    padding: 0.12em 0.4em;
+    border-radius: 6px;
+    background: rgba(45, 55, 72, 0.07);
+    overflow-wrap: anywhere;
+}
+
 .article-body a {
     color: var(--color-accent);
     font-weight: 500;

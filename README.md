@@ -10,7 +10,7 @@ Four pages, and a nav that floats over all of them.
 
 `things.html` is an index of twenty-three things I built or organised between 2017 and 2026, grouped by theme rather than by date: public tools, client sites, festival work, small automations, video series, and press. Editorial rows with a year gutter instead of a bento grid, because there are no images on that page and empty cards look thin.
 
-`writing.html` is the writing feed. The two pieces I wrote sit on top as large cards. Below them, thirteen press clippings about things I ran, each set under its outlet's name like a masthead, tilted like paper cuttings, and opening the original where it was published. Chips filter by mine / about me and by language.
+`writing.html` is the writing feed. The pieces I wrote sit on top as large cards, the newest across the full width. Below them, thirteen press clippings about things I ran, each set under its outlet's name like a masthead, tilted like paper cuttings, and opening the original where it was published. Chips filter by mine / about me and by language.
 
 `barents-spektakel.html` archives a piece I wrote for PHENOM in 2019 about volunteering at Barents Spektakel in Kirkenes, with its 15 photographs mirrored locally so the page does not rot when someone reorganises a CMS. English translation by default, the Hungarian as published behind the language switch.
 
@@ -47,6 +47,7 @@ things.html                index of everything I've built or organised
 writing.html               my own pieces and the press about me
 barents-spektakel.html     the PHENOM piece, translated
 barents-spektakel.hu.html  the same piece, as originally published
+ai-magyarul.html           why AI-written Hungarian gives itself away (HU, first published here)
 styles.css                 shared tokens, buttons, bento grid
 things.css                 the index layout
 writing.css                the writing feed: editorial cards and clippings

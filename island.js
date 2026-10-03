@@ -22,6 +22,13 @@
             label: 'Things I wrote',
             mine: [
                 {
+                    title: 'Az AI angolul fogalmaz – akkor is, ha magyarul promptolod',
+                    lang: 'hu',
+                    meta: 'New · 2026 · HU · 5 min',
+                    href: 'ai-magyarul.html',
+                    cover: '—'
+                },
+                {
                     title: 'We went to the coldest festival in the world',
                     meta: 'PHENOM · 2019 · EN / HU · 7 min',
                     href: 'barents-spektakel.html',
@@ -81,7 +88,10 @@
         return '<div class="island-kicker">' + d.label + '</div>' +
             '<div class="island-reads">' +
                 d.mine.map(function (m) {
-                    return '<a class="island-read" href="' + m.href + '">' + picture(m.img, 64, 44) +
+                    var thumb = m.cover
+                        ? '<span class="island-read-cover" aria-hidden="true">' + m.cover + '</span>'
+                        : picture(m.img, 64, 44);
+                    return '<a class="island-read" href="' + m.href + '">' + thumb +
                         '<span><strong' + (m.lang ? ' lang="' + m.lang + '"' : '') + '>' + m.title + '</strong>' +
                         '<small>' + m.meta + '</small></span></a>';
                 }).join('') +

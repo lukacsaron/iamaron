@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Az AI angolul fogalmaz – akkor is, ha magyarul promptolod | Aron Lukacs</title>
+    <meta name="description" content="Miért hangzik az AI-magyar AI-magyarnak, és milyen rendszer kell a modell köré, hogy ne így legyen: egy élő magyar nyelvű wiki és ötrétegű minőségellenőrzés.">
+    <meta name="author" content="Lukács Áron">
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://iamaron.com/ai-magyarul.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://iamaron.com/ai-magyarul.html">
+    <meta property="og:title" content="Az AI angolul fogalmaz – akkor is, ha magyarul promptolod">
+    <meta property="og:description" content="Miért hangzik az AI-magyar AI-magyarnak, és milyen rendszer kell a modell köré, hogy ne így legyen.">
+    <meta property="og:locale" content="hu_HU">
+    <meta property="og:image" content="https://iamaron.com/opengraph.png">
+    <meta property="og:site_name" content="Aron Lukacs">
+    <meta property="article:author" content="Lukács Áron">
+    <meta property="article:published_time" content="2026-10-03">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Az AI angolul fogalmaz – akkor is, ha magyarul promptolod">
+    <meta property="twitter:description" content="Miért hangzik az AI-magyar AI-magyarnak, és milyen rendszer kell a modell köré, hogy ne így legyen.">
+    <meta property="twitter:image" content="https://iamaron.com/opengraph.png">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🇭🇺</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bricolage+Grotesque:wght@400;500;600;700;800&family=Instrument+Serif&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="article.css">
+    <link rel="stylesheet" href="island.css">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Az AI angolul fogalmaz – akkor is, ha magyarul promptolod",
+        "inLanguage": "hu",
+        "author": {"@type": "Person", "name": "Lukács Áron", "url": "https://iamaron.com"},
+        "datePublished": "2026-10-03",
+        "mainEntityOfPage": "https://iamaron.com/ai-magyarul.html"
+    }
+    </script>
+</head>
+<body>
+    <div class="article-page">
+
+        <article class="article">
+            <div class="article-header">
+                <p class="article-kicker">AI és tartalomgyártás · 2026. október</p>
+                <h1>Az AI angolul fogalmaz – akkor is, ha magyarul promptolod.</h1>
+                <div class="article-byline">
+                    <strong>Lukács Áron</strong> · 2026. október 3.
+                </div>
+            </div>
+
+            <div class="article-body">
+                <p class="lead">Néhány hete egy másik magyar fejlesztőcég blogján akadt meg a szemem. A cikk magyarul volt, szakmailag pontos, nyelvtanilag oké. A hosszú gondolatjelek, a "Fontos kiemelni, hogy..." nyitás, a háromelemű felsorolások és a cím alatti "forradalmasítjuk" szó három mondat után mégis egyértelművé tette: ezt nem ember írta. Nem az zavart, hogy generálták, hanem, hogy ez nyilvánvaló volt. Az első bekezdés az egész tartalom és ezzel együtt a "szerző" hitelét is azonnal roncsolta számomra.</p>
+
+                <p>Mi is használunk AI-t a tartalomgyártásnál. Belső esettanulmányok, blog draftek, social posztok, ajánlat szövegek. Az elmúlt időszakban azon dolgoztunk, hogy az AI-magyar ne hangozzon AI-magyarnak. Ez nehezebb volt, mint elsőre tűnik, és a problémát nem oldja meg egy jól megírt system prompt sem. Az alábbiakban leírom, hogyan néz ki nálunk a folyamat.</p>
+
+                <h2>Miért nem tud az LLM rendesen magyarul?</h2>
+
+                <p>A nagy nyelvi modellek angolra súlyozott adathalmazon tanultak. A magyar statisztikailag is kisebbségi nyelv – ez gyakran alapból is érződik az AI outputok nyelvi szintaktikáján, stilisztikáján, de a jól ismert AI mintázatok szintén átöröklődnek a magyar szöveg generáláskor is. A modell először angolul "gondolkodik", aztán azt szóról-szóra magyarosítja, gyakorlatilag tükörfordítja. Ennek tipikus eredménye az úgynevezett translationese: ez egy olyan magyar mondat, amit szóról-szóra vissza tudsz fordítani angolra, és angolul jobban is hangzik, mint magyarul.</p>
+
+                <p>Pár ilyen példa, amit az átlag magyar olvasó észrevesz, de nem feltétlenül tud egyből rámutatni:</p>
+
+                <ul>
+                    <li>Hosszú gondolatjel (em dash). A magyar prózában nem szokás, általában vesszővel vagy kettősponttal tagolunk.</li>
+                    <li>"Mit gondolsz? Kommentben várom!" záró kérdés a cikk végén. Magyar szakmai szövegben nem természetes.</li>
+                    <li>"Forradalmi", "élvonalbeli", "next-gen" jelzők egymás után, különösebb alátámasztás nélkül.</li>
+                    <li>"Fontos kiemelni, hogy..." vagy "Az alábbiakban bemutatjuk..." típusú torokköszörülés a bekezdés elején.</li>
+                    <li>Felsorolások minden eleme előtt félkövér "bevezető címke", mintha minden sornak külön szakaszcíme lenne.</li>
+                    <li>Tükörfordított idiómák: "a nap végén", "elfogyott alólad a támogatás", "az asztalon van".</li>
+                </ul>
+
+                <p>Ezek közül valójában egyik sem nyelvtani hiba. Egyszer-egyszer még átsiklasz fölötte, de ha sorozatosan megjelennek, akkor már kilóg a lóláb.</p>
+
+                <h2>Egy jónak tűnő system prompt gyakran nem újrahasznosítható.</h2>
+
+                <p>Az első ötlete mindenkinek ugyanaz: írjunk egy jó hosszú system promptot, ami leírja az AI-nak, hogy mit kerüljön, hogyan fogalmazzon. Ez működik az első cikknél. Aztán a másodiknál az AI valami mást ront el és így tovább… Más szóval, lehetetlen olyan promptot írni, ami minden korábbi tapasztalatot tartalmaz, és a kontextusba is belefér.</p>
+
+                <p>Ezért más megoldást kerestünk. Nálunk a tudás nem a promptban él, hanem egy karbantartott magyar nyelvű wikiben, amit minden visszajelzés bővít. Gyakorlatilag Andrej Karpathy "LLM Wiki" mintázatát adaptáltuk magyar digitális marketingre.</p>
+
+                <p>A wikinek három rétege van. A <code>raw/</code> mappában az érinthetetlen forrás él: interjú-transzkriptek, korábban publikált cikkek, brand-dokumentumok. A <code>wiki/</code> mappa a teljes, élő tudásbázis: ToV, pozicionálás, szolgáltatások, esettanulmányok, egyéb templatek és minták. A <code>CLAUDE.md</code> séma-fájl pedig megmondja az AI-nak, hogy milyen műveletekkel tud dolgozni.</p>
+
+                <p>Öt művelet van: új forrás feldolgozása (ingest), kérdés, keresés (query), kimenet generálása (produce), visszajelzés (feedback), szabályrendszer-ellenőrzést futtatás (lint). Mindegyik egy slash command a Claude Code-ban. A produce művelet pedig a marketingszövegeket gyártja.</p>
+
+                <h2>Az 5 rétegű minőségellenőrzés</h2>
+
+                <p>A minőségellenőrzés öt szinten történik, és mindegyik más szempontrendszerért felel.</p>
+
+                <p>A Tier 0 az AI saját önellenőrzése egy ötpontos lista alapján: úgy hangzik-e a szöveg, mint a meglévő mintacikkek, használ-e tiltott szót, hány AI artifact van benne, illeszkedik-e a szövegstruktúra, ritmus a választott példához, a számok, tények visszavezethetők-e a forrásokra. Ez fut le először minden generált szövegen.</p>
+
+                <p>A Tier 1 egy Python szkript (<code>tools/hang_lint.py</code>), ami determinisztikus szabályok szerint keres hibákat a szövegben. Regex-alapú hosszú gondolatjel (em dash) keresés, tiltott szavak listája, AI artifact ellenőrzés (háromelemű felsorolások aránya bekezdésenként, mondathossz-szórás, szöveglágyító határozószók halmozása). A szabálykatalógus a <code>wiki/brand/magyar-szabaly-csomag.md</code>-ben él, jelenleg körülbelül 80 szabály, mindegyik egyedi azonosítóval (M2 igekötő-távolság, SZ4 jelzős halom, L7 hyperbola-szuperlatívusz, ST4 gondolatjel, és így tovább).</p>
+
+                <p>A Tier 2 ugyanaz a szkript, csak ez a lépés már a HuSpaCy magyar morfológiai elemzőt is használja. A HuSpaCy olyasmire képes, amit regex-szel nem lehet, ezek pedig a nyelvi szintaktikai hibák, pl: jelzők halmozása, hiányzó tagmondatok, az igekötő szabály nem megfelelő alkalmazása (pl.: magyarul a "megoldja" és az "oldja meg" nem felcserélhető).</p>
+
+                <p>A Tier 2.5 egy magyarra tanított nyelvi modell, a Racka-4B (ELTE NLP Labor, Qwen3-4B alapra LoRA-val ~160 milliárd tokenen továbbtanítva, ebből 44% magyar). Erre a rétegre azért volt szükség, mert a translationese egy részét az előző kettő nem fogja meg: pl. az olyan mondatokat, amik nyelvtanilag rendben vannak, nincs bennük tiltott szó, mégis idegenül szólnak magyarul. A modellt nem generálásra használjuk. Egy few-shot kontextusban (négy natív + négy tükörfordított példa) megmérjük, hogy egy adott mondat folytatásaként a "Ez magyaros mondat." vagy az "Ez angolból tükörfordított mondat." válasz valószínűbb-e. Egy megkötés: a Racka licence (cc-by-nc-sa-4.0) csak kutatási, nem-kereskedelmi használatot enged, ezért ez nálunk belső konzultatív réteg, a publikációs flow-nak nem közvetlen része.</p>
+
+                <p>A Tier 3 egy LLM-judge subagent. Friss kontextusban kapja meg a véglegesnek szánt output vázlatát, a márkahang/kommunikációs stílus guideot, és 2-3 valódi cikket a mintamappából. Úgy vizsgálja a draftot, ahogy egy ember tenné, és megpróbálja eldönteni, hogy megfelel-e a szabályoknak, vagy nem. Ez már nem statisztikai, inkább ízlésbeli ellenőrzés.</p>
+
+                <p>Az öt réteg redundánsan dolgozik, és ez szándékos. Látható, hogy mindegyik más-más típusú hibák feltárásáért és javításáért felel.</p>
+
+                <h2>A generált szöveg minősége nem statikus, hanem folyamatosan fejlődik.</h2>
+
+                <p>A wiki előnye, hogy a benne lévő tapasztalat és tudás halmozódik. Minden visszajelzés szabállyá válik, majd később újrahasznosul.</p>
+
+                <p>Példa: A pilot során az egyik rövid esettanulmány egy ilyen mondatot tartalmazott "..az ügyfél szed le napi 60 ezer cikket..". A "szed le" a scrape angol tükörfordítása, magyarul a "feldolgoz" természetesebb. A helyesbítés nem csak az esettanulmányba került be, hanem egy új bejegyzés is került a <code>szavak-amiket-kerulunk.md</code>-be, a magyar nyelvi szabálycsomag kapott egy új azonosítót, a tipikus hibák regex listája is bővült, és a következő esettanulmány generálásnál az agent már tudta, hogy ezt a hibát nem szabad elkövetni. Minél több szöveget generál a rendszer, annál több visszajelzést tudok neki adni és annál pontosabb, magyarosabb eredmény fog születni a következő ciklusban.</p>
+
+                <p>A wiki nem a brand guide helyett/mellett van. A wiki maga a brand guide, csak annak egy élő, folyamatosan változó szöveges változata. És nem is a "tökéletes" system prompt okosabb megfelelője, sokkal inkább egy olyan dinamikus rendszer, ami azért felel, hogy minden egyes szöveggenerálási ciklusban az éppen aktuális igényeknek megfelelően álljon össze a kontextus.</p>
+
+                <h2>Mi a tanulság?</h2>
+
+                <p>Az AI problémája a magyarral nem nyelvtani eredetű. A modellek tudnak magyarul. A baj az, hogy alapból az átlag-AI hangján szólalnak meg, és ezt egy magyar olvasó ma már ránézésre felismeri. A megoldás nem egy mágikus mindent megoldó prompt, és nem is egy jobb modell (persze lehetne teljesen magyarul trainelt modell, de egyelőre ilyenbe annak költségei miatt még senki nem vágott bele). A megoldás egy jól karbantartott brandguide, egy szabálykönyvtár, és egy többrétegű ellenőrző folyamat, ami minden generáláskor lefut.</p>
+
+                <p>Nálunk ez most öt lépés. Sokat dolgoztunk vele, és működik.</p>
+
+                <p>Ha magyar nyelvre építesz tartalom-generálási folyamatot, érdemes nem azzal kezdeni, hogy melyik modell ír jobban, hanem arra kell a hangsúlyt fektetni, hogy milyen rendszer dolgozik a modell körül, mitől fog felépülni az a kontextus aminek köszönhetően a modell jobb minőségű és faktuális szöveget dob ki magából.</p>
+            </div>
+        </article>
+
+        <footer class="article-footer">
+            <div class="article-footer-links">
+                <a href="writing.html">Írások</a>
+                <a href="/">iamaron.com</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Site nav. island.js turns it into the morphing island; without JS it stays a row of links. -->
+    <nav class="island" aria-label="Site" data-progress>
+        <div class="island-shell">
+            <div class="island-bar">
+                <a class="island-home" href="/" aria-label="Aron Lukacs, home"><span class="island-avatar"><img src="aron-avatar.jpg" alt="" width="36" height="36"></span><span class="island-label">Aron</span></a>
+                <a href="things.html" data-panel="built">Built<sup>39</sup></a>
+                <a href="writing.html" data-panel="wrote" aria-current="page">Wrote</a>
+                <a class="island-talk" href="mailto:aron.lukacs@gmail.com"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Talk</a>
+            </div>
+        </div>
+    </nav>
+    <script src="island.js"></script>
+</body>
+</html>
