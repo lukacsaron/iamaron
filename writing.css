@@ -1,0 +1,486 @@
+/* writing.css — the writing and press feed.
+   Layered on things.css for the page frame, hero and footer. Two shelves:
+   my own pieces as large editorial cards, then other people's coverage as
+   paper clippings, each set under its outlet's name like a masthead. */
+
+[hidden] {
+    display: none !important;
+}
+
+.hero {
+    padding-bottom: 56px;
+}
+
+/* --- Filters --- */
+
+.filters {
+    display: none;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 20px;
+    margin-bottom: 64px;
+}
+
+.js .filters {
+    display: flex;
+}
+
+.filter-set {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.filter-set + .filter-set {
+    padding-left: 20px;
+    border-left: 1px solid var(--color-border);
+}
+
+.chip {
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+    background: var(--color-card);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.chip:hover {
+    color: var(--color-text);
+    border-color: rgba(45, 55, 72, 0.22);
+}
+
+.chip:active {
+    transform: scale(0.96);
+}
+
+.chip[aria-pressed="true"] {
+    background: var(--color-text);
+    border-color: var(--color-text);
+    color: #fff;
+}
+
+.chip:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+.filter-empty {
+    font-size: 16px;
+    color: var(--color-text-secondary);
+    padding: 40px 0 0;
+}
+
+/* --- Shelves --- */
+
+.shelf + .shelf {
+    margin-top: 104px;
+}
+
+.shelf-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px 24px;
+    padding-bottom: 18px;
+    margin-bottom: 36px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.shelf-head h2 {
+    font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.shelf-head span {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+}
+
+/* --- By me: editorial cards --- */
+
+.reads {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+}
+
+.read-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-card);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md), 0 0 0 1px var(--color-border);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.read-card:hover,
+.read-card:focus-within {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg), 0 0 0 1px var(--color-border);
+}
+
+.read-card-media {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #E2E8F0;
+}
+
+.read-card-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.read-card:hover .read-card-media img {
+    transform: scale(1.04);
+}
+
+.read-card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 26px 28px 24px;
+}
+
+.read-card-kicker {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+    margin-bottom: 12px;
+}
+
+.read-card h3 {
+    font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+    font-size: clamp(22px, 2.4vw, 28px);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+}
+
+.read-card h3 a {
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+/* The title link covers the whole card */
+.read-card h3 a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.read-card h3 a:focus-visible {
+    outline: none;
+}
+
+.read-card:has(h3 a:focus-visible) {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+}
+
+.read-card-body > p:not(.read-card-kicker) {
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+}
+
+.read-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: auto;
+    padding-top: 22px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+}
+
+.read-card-langs {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    gap: 6px;
+}
+
+.read-card-langs a {
+    padding: 6px 11px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.read-card-langs a:hover {
+    border-color: var(--color-accent);
+    background: rgba(74, 85, 104, 0.05);
+}
+
+/* --- About me: clippings --- */
+
+.clips {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px 26px;
+    padding: 6px 4px 0;
+}
+
+.clip {
+    --tilt: 0deg;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 22px 22px 18px;
+    color: var(--color-text);
+    text-decoration: none;
+    /* Newsprint: warm paper with the faintest column rule */
+    background:
+        linear-gradient(90deg, transparent calc(50% - 0.5px), rgba(45, 55, 72, 0.035) 50%, transparent calc(50% + 0.5px)),
+        #FFFDF7;
+    border-radius: 3px;
+    box-shadow:
+        0 1px 1px rgba(45, 55, 72, 0.06),
+        0 6px 18px rgba(45, 55, 72, 0.07),
+        0 0 0 1px rgba(45, 55, 72, 0.06);
+    transform: rotate(var(--tilt));
+    transition:
+        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.clips li:nth-child(4n + 1) .clip { --tilt: -1.5deg; }
+.clips li:nth-child(4n + 2) .clip { --tilt: 0.8deg; }
+.clips li:nth-child(4n + 3) .clip { --tilt: -0.6deg; }
+.clips li:nth-child(4n + 4) .clip { --tilt: 1.2deg; }
+
+/* A strip of tape on every third clipping */
+.clips li:nth-child(3n + 1) .clip::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    width: 72px;
+    height: 20px;
+    margin-left: -36px;
+    background: rgba(226, 232, 240, 0.72);
+    box-shadow: 0 1px 2px rgba(45, 55, 72, 0.08);
+    transform: rotate(-3deg);
+}
+
+.clip:hover,
+.clip:focus-visible {
+    transform: rotate(0deg) translateY(-6px);
+    box-shadow:
+        0 2px 4px rgba(45, 55, 72, 0.06),
+        0 18px 40px rgba(45, 55, 72, 0.14),
+        0 0 0 1px rgba(45, 55, 72, 0.08);
+}
+
+.clip:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
+}
+
+/* Mastheads: type only, set in a handful of styles so the wall reads as
+   many publications rather than one */
+
+.clip-masthead {
+    display: block;
+    padding-bottom: 10px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid var(--color-text);
+    box-shadow: 0 3px 0 -2px var(--color-text);
+    font-size: 26px;
+    line-height: 1;
+    color: var(--color-text);
+}
+
+.clip-masthead.is-serif,
+.clip-masthead.is-serif-caps,
+.clip-masthead.is-serif-italic {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-weight: 400;
+    font-size: 30px;
+}
+
+.clip-masthead.is-serif-caps {
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.clip-masthead.is-serif-italic {
+    font-style: italic;
+}
+
+.clip-masthead.is-heavy {
+    font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+.clip-masthead.is-wide {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: 0.32em;
+    padding-top: 4px;
+}
+
+.clip-masthead.is-lower {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    text-transform: lowercase;
+}
+
+.clip-masthead.is-rounded {
+    font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    letter-spacing: -0.01em;
+}
+
+.clip-headline {
+    display: block;
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 21px;
+    line-height: 1.18;
+    margin-bottom: 12px;
+    /* No auto hyphens: they split proper nouns like Égboltkép */
+    overflow-wrap: break-word;
+}
+
+.clip-context {
+    display: block;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--color-text-secondary);
+    margin-bottom: 18px;
+}
+
+.clip-foot {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px dashed rgba(45, 55, 72, 0.16);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--color-text-secondary);
+}
+
+.clip-foot span + span::before {
+    content: '·';
+    margin-right: 10px;
+}
+
+.clip-foot::after {
+    content: '↗';
+    margin-left: auto;
+    font-size: 14px;
+    transition: transform 0.25s;
+}
+
+.clip:hover .clip-foot::after {
+    transform: translate(2px, -2px);
+}
+
+/* --- Footer --- */
+
+.page-footer-links {
+    display: flex;
+    gap: 22px;
+}
+
+/* --- Entrance: the wall settles in, one clipping after another --- */
+
+@media (prefers-reduced-motion: no-preference) {
+    .read-card,
+    .clips li {
+        /* backwards, not both: a held end state would pin the hover lift */
+        animation: settle 0.7s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+    }
+
+    .read-card:nth-child(2) { animation-delay: 0.08s; }
+
+    .clips li:nth-child(1) { animation-delay: 0.10s; }
+    .clips li:nth-child(2) { animation-delay: 0.14s; }
+    .clips li:nth-child(3) { animation-delay: 0.18s; }
+    .clips li:nth-child(4) { animation-delay: 0.22s; }
+    .clips li:nth-child(5) { animation-delay: 0.26s; }
+    .clips li:nth-child(6) { animation-delay: 0.30s; }
+    .clips li:nth-child(n + 7) { animation-delay: 0.34s; }
+}
+
+@keyframes settle {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .clip,
+    .clip:hover,
+    .clip:focus-visible {
+        transform: none;
+        transition: box-shadow 0.2s;
+    }
+
+    .read-card,
+    .read-card:hover,
+    .read-card:focus-within,
+    .read-card-media img,
+    .read-card:hover .read-card-media img {
+        transform: none;
+        transition: box-shadow 0.2s;
+    }
+}
+
+/* --- Responsive --- */
+
+@media (max-width: 760px) {
+    .reads {
+        grid-template-columns: 1fr;
+    }
+
+    .filters {
+        margin-bottom: 48px;
+    }
+
+    .filter-set + .filter-set {
+        padding-left: 0;
+        border-left: 0;
+    }
+
+    .shelf + .shelf {
+        margin-top: 72px;
+    }
+
+    .clips {
+        grid-template-columns: 1fr;
+        gap: 26px;
+    }
+}

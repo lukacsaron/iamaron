@@ -27,28 +27,15 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bricolage+Grotesque:wght@400;500;600;700;800&family=Instrument+Serif&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="things.css">
+    <link rel="stylesheet" href="island.css">
 </head>
 <body>
     <canvas id="particles-canvas" class="particles-background"></canvas>
 
     <div class="page">
-        <header class="topbar">
-            <a href="/" class="topbar-back">
-                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                    <path d="M19 12H5M12 19l-7-7 7-7"/>
-                </svg>
-                Aron Lukacs
-            </a>
-            <a href="https://github.com/lukacsaron" target="_blank" rel="noopener noreferrer" class="topbar-link">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.8.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/>
-                </svg>
-                GitHub
-            </a>
-        </header>
 
         <div class="hero">
             <h1>Things I've <em class="intro-accent gradient-1b">built</em>, and a few I <em class="intro-accent gradient-1a">organised</em></h1>
@@ -948,6 +935,7 @@
             <div class="section-aside">
                 <h2>Press</h2>
                 <p>Things I organised, ran or founded, the record other people made of them, and one piece I wrote myself. The write-ups and segments are their authors' work, so they stay where they were published.</p>
+                <p>My own writing, and the full press list, is on <a href="writing.html">the writing page</a>.</p>
                 <p class="section-count">6 entries</p>
             </div>
 
@@ -1226,5 +1214,18 @@
             frame.replaceChildren(iframe);
         });
     </script>
+
+    <!-- Site nav. island.js turns it into the morphing island; without JS it stays a row of links. -->
+    <nav class="island" aria-label="Site">
+        <div class="island-shell">
+            <div class="island-bar">
+                <a class="island-home" href="/" aria-label="Aron Lukacs, home"><span class="island-avatar"><img src="aron-avatar.jpg" alt="" width="36" height="36"></span><span class="island-label">Aron</span></a>
+                <a href="things.html" data-panel="built" aria-current="page">Built<sup>39</sup></a>
+                <a href="writing.html" data-panel="wrote">Wrote</a>
+                <a class="island-talk" href="mailto:aron.lukacs@gmail.com"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Talk</a>
+            </div>
+        </div>
+    </nav>
+    <script src="island.js"></script>
 </body>
 </html>

@@ -4,11 +4,13 @@ Source for [iamaron.com](https://iamaron.com), my personal site.
 
 ## What it is
 
-Three pages.
+Four pages, and a nav that floats over all of them.
 
 `index.html` covers how I got from festival communications to selling AI software: [LogiNet](https://loginet.com/) and [22.design](https://22.design/) now, and before that Bánkitó Festival, Auróra, field production for Vice and Al Jazeera, a print-on-demand startup that failed, and a stint touring with an organist. A sticky profile column on the left, a scrolling bento grid of cards on the right, collapsing to one column on mobile.
 
 `things.html` is an index of twenty-three things I built or organised between 2017 and 2026, grouped by theme rather than by date: public tools, client sites, festival work, small automations, video series, and press. Editorial rows with a year gutter instead of a bento grid, because there are no images on that page and empty cards look thin.
+
+`writing.html` is the writing feed. The two pieces I wrote sit on top as large cards. Below them, thirteen press clippings about things I ran, each set under its outlet's name like a masthead, tilted like paper cuttings, and opening the original where it was published. Chips filter by mine / about me and by language.
 
 `barents-spektakel.html` archives a piece I wrote for PHENOM in 2019 about volunteering at Barents Spektakel in Kirkenes, with its 15 photographs mirrored locally so the page does not rot when someone reorganises a CMS. English translation by default, the Hungarian as published behind the language switch.
 
@@ -29,6 +31,7 @@ Deployed through Coolify from the Dockerfile.
 
 ## Things in here worth stealing
 
+- **The Island.** A dark glass pill at the bottom of every page. Hovering Built or Wrote stretches it upward into a preview panel; scrolling down shrinks it to the avatar; on article pages a ring around the avatar tracks how far you have read. Without JS it is a plain row of links, and the panels are built on first hover, so nobody pays for previews they never open.
 - **Connected-dots canvas background.** Particles drift, link to neighbours within 150px with a gradient line, and push away from the cursor. Density scales with viewport area, so a phone does not render 400 nodes.
 - **Waving favicon.** Seven SVG data-URI frames of 👋 swapped every 100ms, restarting every three seconds.
 - **Person JSON-LD** covering roles, employers, and past organisations, so search engines get the career without parsing prose.
@@ -41,14 +44,17 @@ Deployed through Coolify from the Dockerfile.
 ```
 index.html                 the main page, its JSON-LD, and the inline scripts
 things.html                index of everything I've built or organised
+writing.html               my own pieces and the press about me
 barents-spektakel.html     the PHENOM piece, translated
 barents-spektakel.hu.html  the same piece, as originally published
 styles.css                 shared tokens, buttons, bento grid
 things.css                 the index layout
+writing.css                the writing feed: editorial cards and clippings
+island.css / island.js     the floating nav, shared by every page
 article.css                the article layout
 article.js                 particles + gallery lightbox, shared by both article pages
 linkedin-header.html       a separate 1584×396 banner I render and screenshot
-aron.jpg / aron.mp4 / opengraph.png
+aron.jpg / aron-avatar.jpg / aron.mp4 / opengraph.png
 photos/ logos/
 photos/barents/            15 originals, with 1600px display copies in display/
 ```

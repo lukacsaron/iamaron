@@ -29,9 +29,10 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bricolage+Grotesque:wght@400;500;600;700;800&family=Instrument+Serif&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="article.css">
+    <link rel="stylesheet" href="island.css">
 
     <script type="application/ld+json">
     {
@@ -48,14 +49,6 @@
 </head>
 <body>
     <div class="article-page">
-        <header class="topbar">
-            <a href="things.html" class="topbar-back">
-                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                    <path d="M19 12H5M12 19l-7-7 7-7"/>
-                </svg>
-                Things
-            </a>
-        </header>
 
         <article class="article">
             <div class="article-header">
@@ -148,10 +141,23 @@
         <footer class="article-footer">
             Eredetileg a <a href="https://minner.hu/10-ux-tipp-a-konverziod-novelesehez-karacsony-elott/" target="_blank" rel="noopener noreferrer">minner.hu</a> oldalon jelent meg, 2024. október 17-én. Itt azért van meg, hogy elérhető maradjon.
             <div class="article-footer-links">
-                <a href="things.html">All the things I've built</a>
+                <a href="writing.html">More writing</a>
                 <a href="/">iamaron.com</a>
             </div>
         </footer>
     </div>
+
+    <!-- Site nav. island.js turns it into the morphing island; without JS it stays a row of links. -->
+    <nav class="island" aria-label="Site" data-progress>
+        <div class="island-shell">
+            <div class="island-bar">
+                <a class="island-home" href="/" aria-label="Aron Lukacs, home"><span class="island-avatar"><img src="aron-avatar.jpg" alt="" width="36" height="36"></span><span class="island-label">Aron</span></a>
+                <a href="things.html" data-panel="built">Built<sup>39</sup></a>
+                <a href="writing.html" data-panel="wrote" aria-current="page">Wrote</a>
+                <a class="island-talk" href="mailto:aron.lukacs@gmail.com"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Talk</a>
+            </div>
+        </div>
+    </nav>
+    <script src="island.js"></script>
 </body>
 </html>

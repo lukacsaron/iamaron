@@ -10,47 +10,6 @@
     z-index: 1;
 }
 
-/* --- Top bar --- */
-
-.topbar {
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 18px 0;
-    background: rgba(250, 250, 250, 0.82);
-    backdrop-filter: saturate(180%) blur(12px);
-    -webkit-backdrop-filter: saturate(180%) blur(12px);
-    border-bottom: 1px solid var(--color-border);
-}
-
-.topbar-back {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--color-text);
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.topbar-back svg {
-    flex: none;
-    transition: transform 0.2s;
-}
-
-.topbar-back:hover {
-    color: var(--color-accent);
-}
-
-.topbar-back:hover svg {
-    transform: translateX(-3px);
-}
-
 /* Language switch: the current language is a state, not a link */
 
 .lang-switch {
@@ -84,6 +43,11 @@
 .lang-switch a:hover {
     background: rgba(74, 85, 104, 0.08);
     color: var(--color-text);
+}
+
+/* The switch sits above the kicker now that the topbar is gone */
+.article-lang {
+    margin-bottom: 28px;
 }
 
 /* --- Article header --- */
@@ -499,8 +463,7 @@ button:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .gallery img,
-    .topbar-back:hover svg {
+    .gallery img {
         transition: none;
         transform: none;
     }
