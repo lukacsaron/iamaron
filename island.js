@@ -22,9 +22,16 @@
             label: 'Things I wrote',
             mine: [
                 {
+                    title: 'Hogyan viszek egyedül egy AI-first céget?',
+                    lang: 'hu',
+                    meta: 'New · 2026 · HU · 8 min',
+                    href: 'ai-first-egyedul.html',
+                    img: 'photos/ai-first/nyito'
+                },
+                {
                     title: 'Az AI angolul fogalmaz – akkor is, ha magyarul promptolod',
                     lang: 'hu',
-                    meta: 'New · 2026 · HU · 5 min',
+                    meta: '2026 · HU · 5 min',
                     href: 'ai-magyarul.html'
                 },
                 {

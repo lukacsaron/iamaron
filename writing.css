@@ -253,6 +253,17 @@
     max-width: 68ch;
 }
 
+/* A featured piece that does have a photograph sets it beside the text */
+.read-card.is-featured:has(.read-card-media) {
+    flex-direction: row;
+}
+
+.read-card.is-featured .read-card-media {
+    flex: 0 0 50%;
+    aspect-ratio: auto;
+    min-height: 340px;
+}
+
 /* --- About me: clippings --- */
 
 .clips {
@@ -484,6 +495,15 @@
 @media (max-width: 760px) {
     .reads {
         grid-template-columns: 1fr;
+    }
+
+    .read-card.is-featured:has(.read-card-media) {
+        flex-direction: column;
+    }
+
+    .read-card.is-featured .read-card-media {
+        aspect-ratio: 16 / 9;
+        min-height: 0;
     }
 
     .read-card.is-featured .read-card-body {

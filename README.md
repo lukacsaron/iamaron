@@ -48,6 +48,7 @@ writing.html               my own pieces and the press about me
 barents-spektakel.html     the PHENOM piece, translated
 barents-spektakel.hu.html  the same piece, as originally published
 ai-magyarul.html           why AI-written Hungarian gives itself away (HU, first published here)
+ai-first-egyedul.html      running a company alone with AI, from my Service Design Day talk (HU)
 styles.css                 shared tokens, buttons, bento grid
 things.css                 the index layout
 writing.css                the writing feed: editorial cards and clippings
@@ -58,6 +59,7 @@ linkedin-header.html       a separate 1584×396 banner I render and screenshot
 aron.jpg / aron-avatar.jpg / aron.mp4 / opengraph.png
 photos/ logos/
 photos/barents/            15 originals, with 1600px display copies in display/
+photos/ai-first/           images for the AI-first article: diagrams, screenshots, a 9-photo gallery
 ```
 
 Every page is listed individually in the `Dockerfile`, so a new one needs a `COPY` line or it 404s in production.
