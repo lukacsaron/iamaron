@@ -6,7 +6,7 @@ Source for [iamaron.com](https://iamaron.com), my personal site.
 
 Four pages, and a nav that floats over all of them.
 
-`index.html` covers how I got from festival communications to selling AI software: [LogiNet](https://loginet.com/) and [22.design](https://22.design/) now, and before that Bánkitó Festival, Auróra, field production for Vice and Al Jazeera, a print-on-demand startup that failed, and a stint touring with an organist. A sticky profile column on the left, a scrolling bento grid of cards on the right, collapsing to one column on mobile.
+`index.html` covers how I got from festival communications to selling AI software: digital innovation at a boutique consultancy, freelance UX and my own startup, TTMT, now; [LogiNet](https://loginet.com/) and [22.design](https://22.design/) before that; and further back Bánkitó Festival, Auróra, field production for Vice and Al Jazeera, a print-on-demand startup that failed, and a stint touring with an organist. A sticky profile column on the left, a scrolling bento grid of cards on the right, collapsing to one column on mobile.
 
 `things.html` is an index of twenty-three things I built or organised between 2017 and 2026, grouped by theme rather than by date: public tools, client sites, festival work, small automations, video series, and press. Editorial rows with a year gutter instead of a bento grid, because there are no images on that page and empty cards look thin.
 
