@@ -141,23 +141,100 @@
             color: #4A5568;
             font-weight: 700;
         }
+
+        /* Cover layout: the profile photo covers the bottom-left on desktop,
+           so everything sits right of x=480 */
+        .cover {
+            position: absolute;
+            z-index: 1;
+            left: 500px;
+            right: 64px;
+            top: 50%;
+            transform: translateY(-54%);
+        }
+        .cover-line {
+            font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+            font-size: 35px;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            color: var(--color-text);
+            margin-bottom: 26px;
+        }
+        .cover-cards {
+            display: flex;
+            gap: 16px;
+        }
+        .cover-card {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 16px;
+            box-shadow: 0 4px 14px rgba(45, 55, 72, 0.08), 0 0 0 1px rgba(45, 55, 72, 0.08);
+        }
+        .cover-card strong {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--color-text);
+        }
+        .cover-card span:last-child {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+        }
+        .cover-kicker {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #A0AEC0;
+        }
+        .cover-card.is-ttmt strong {
+            background-image: linear-gradient(135deg, #3B82F6, #1D4ED8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .cover-url {
+            position: absolute;
+            z-index: 1;
+            right: 64px;
+            bottom: 22px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #A0AEC0;
+            letter-spacing: 0.02em;
+        }
     </style>
 </head>
 <body>
     <canvas id="particles-canvas" class="particles-background"></canvas>
 
-    <div class="content">
-        <p class="section-intro-text">
-            <span class="intro-heading intro-heading-hero">Hey, I'm Aron <span class="wave">👋</span></span>
-            <span class="intro-heading intro-heading-secondary">— I connect dots between <em class="intro-accent gradient-1a">culture</em>, <em class="intro-accent gradient-1b">technology</em>, and <em class="intro-accent gradient-1c">business</em> that most people don't see.</span>
-            <span class="intro-subheading-large">
-                These days I lead <strong class="accent-strong">digital innovation</strong> at a boutique consultancy, run a <strong class="accent-strong">freelance UX practice</strong>,
-            </span>
-            <span class="intro-subheading-large compact">
-                and build my own startup, <strong class="accent-strong">TTMT</strong>, alone, with AI doing most of the work 🎯
-            </span>
-        </p>
+    <div class="cover">
+        <h1 class="cover-line">I connect dots between <em class="intro-accent gradient-1a">culture</em>, <em class="intro-accent gradient-1b">technology</em> and <em class="intro-accent gradient-1c">business</em>.</h1>
+        <div class="cover-cards">
+            <div class="cover-card">
+                <span class="cover-kicker">Now</span>
+                <strong>Digital innovation</strong>
+                <span>Leading it at a boutique consultancy</span>
+            </div>
+            <div class="cover-card">
+                <span class="cover-kicker">Freelance</span>
+                <strong>UX consulting</strong>
+                <span>For products that need to sell</span>
+            </div>
+            <div class="cover-card is-ttmt">
+                <span class="cover-kicker">Founder</span>
+                <strong>TTMT</strong>
+                <span>My AI-first startup, run solo</span>
+            </div>
+        </div>
     </div>
+    <div class="cover-url">iamaron.com</div>
 
     <script>
         (function() {
