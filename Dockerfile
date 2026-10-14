@@ -9,6 +9,7 @@ COPY barents-spektakel.hu.html /usr/share/nginx/html/
 COPY minner-ux-tippek.html /usr/share/nginx/html/
 COPY ai-magyarul.html /usr/share/nginx/html/
 COPY ai-first-egyedul.html /usr/share/nginx/html/
+COPY ai-first-egyedul.en.html /usr/share/nginx/html/
 COPY styles.css /usr/share/nginx/html/
 COPY things.css /usr/share/nginx/html/
 COPY writing.css /usr/share/nginx/html/

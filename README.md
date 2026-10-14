@@ -49,6 +49,7 @@ barents-spektakel.html     the PHENOM piece, translated
 barents-spektakel.hu.html  the same piece, as originally published
 ai-magyarul.html           why AI-written Hungarian gives itself away (HU, first published here)
 ai-first-egyedul.html      running a company alone with AI, from my Service Design Day talk (HU)
+ai-first-egyedul.en.html   the same piece in English
 styles.css                 shared tokens, buttons, bento grid
 things.css                 the index layout
 writing.css                the writing feed: editorial cards and clippings
